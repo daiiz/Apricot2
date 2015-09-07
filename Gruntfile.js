@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         browserify : {
             dist : {
-                src : 'src/main.js',
+                src : 'src/index.js',
                 dest : 'bundle.js'
             }
         },
