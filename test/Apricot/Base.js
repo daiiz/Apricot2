@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('assert');
-var Base = require('../src/Apricot/Base');
+var Base = require('../../src/Apricot/Base');
 
 describe('Apricot.Base', function () {
     var base;
