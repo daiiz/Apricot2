@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/daiz713/Apricot2",
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "jQuery": "^1.7.4",
+    "underscore": "^1.8.3"
   }
 }
