@@ -1,0 +1,19 @@
+{
+  "name": "Apricot2",
+  "version": "1.0.0",
+  "description": "App UI Build Kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daiz713/Apricot2.git"
+  },
+  "author": "daiiz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daiz713/Apricot2/issues"
+  },
+  "homepage": "https://github.com/daiz713/Apricot2"
+}
