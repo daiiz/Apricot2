@@ -1,6 +1,5 @@
 module.exports = function (grunt) {
     var pkg = grunt.file.readJSON('package.json');
-    grunt.loadNpmTasks('grunt-mocha-test');
 
     grunt.initConfig({
         browserify : {
