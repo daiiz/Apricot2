@@ -10,7 +10,12 @@ window.Apricot = _.extend((window.Apricot || {}), {
 // Apricot.Document.*
 // Apricot UI を構築するためのAPIを展開する
 window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
-    Zumen: require('./Apricot/Document/Zumen')
+    // 図面を読み込む、または、生成する
+    Zumen: require('./Apricot/Document/Zumen'),
+    // モジュールを生成する
+    Module: require('./Apricot/Document/Module'),
+    // 図面を描画する
+    Render: require('./Apricot/Document/Render')
 });
 
 // Apricot.App.*
