@@ -19,8 +19,8 @@ describe('Apricot.Document.Zumen', function () {
         assert.equal(zumen1.id !== zumen2.id, true);
     });
 
-    it('Zumenは最初は非表示である', function () {
-        assert.equal(zumen1.isVisible(), false);
+    it('ZumenのAPIを呼ぶことができる', function () {
+        assert.equal(zumen1.api().version, 0);
     });
 
     it('modulesが初期化されている', function () {
