@@ -1651,10 +1651,12 @@ Zumen.prototype = {
         self = self;
     },
 
-    addModule: function (module) {
+    addModule: function (modules) {
         var self = this;
 
-        self.modules.push(module);
+        for(var i = 0; i < modules.length; i++) {
+            self.modules.push(modules[i]);
+        }
     },
 
     // 表示されているかどうか
