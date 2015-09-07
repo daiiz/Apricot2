@@ -13,7 +13,7 @@ Zumen.prototype = {
         self.modules = [];
 
         self.name = 'Zumen';
-        self = self;
+        self.api = require('./Zumen.publicAPI');
     },
 
     addModule: function (modules) {
@@ -24,8 +24,8 @@ Zumen.prototype = {
         }
     },
 
-    // 表示されているかどうか
-    isVisible: require('./Zumen.isVisible')
+    isVisible: require('./Zumen.isVisible'),
+    css      : require('./css')
 };
 
 module.exports = Zumen;

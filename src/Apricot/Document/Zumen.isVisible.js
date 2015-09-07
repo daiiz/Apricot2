@@ -1,5 +1,6 @@
 'use strict';
 
+// 表示されているかどうか
 var isVisible = function () {
     return false;
 };

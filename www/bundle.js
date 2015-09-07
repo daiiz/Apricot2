@@ -1626,6 +1626,7 @@ arguments[4][3][0].apply(exports,arguments)
 },{"dup":3}],5:[function(require,module,exports){
 'use strict';
 
+// 表示されているかどうか
 var isVisible = function () {
     return false;
 };
@@ -1648,7 +1649,7 @@ Zumen.prototype = {
         self.modules = [];
 
         self.name = 'Zumen';
-        self = self;
+        self.api = require('./Zumen.publicAPI');
     },
 
     addModule: function (modules) {
@@ -1659,13 +1660,35 @@ Zumen.prototype = {
         }
     },
 
-    // 表示されているかどうか
-    isVisible: require('./Zumen.isVisible')
+    isVisible: require('./Zumen.isVisible'),
+    css      : require('./css')
 };
 
 module.exports = Zumen;
 
-},{"./Zumen.isVisible":5}],7:[function(require,module,exports){
+},{"./Zumen.isVisible":5,"./Zumen.publicAPI":7,"./css":8}],7:[function(require,module,exports){
+'use strict';
+
+var publicAPI = function (apiVersion) {
+    var self = this;
+
+    var apiSet = {};
+    switch (apiVersion) {
+        case 1:
+            apiSet = {
+                isVisible: self.isVisible,
+                css      : self.css
+            };
+    }
+    
+    return apiSet;
+};
+
+module.exports = publicAPI;
+
+},{}],8:[function(require,module,exports){
+arguments[4][3][0].apply(exports,arguments)
+},{"dup":3}],9:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -1686,4 +1709,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     Render: require('./Apricot/Document/Dom')
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[7]);
+},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[9]);
