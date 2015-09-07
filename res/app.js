@@ -1,3 +1,3 @@
 console.info('Apricot2');
 
-new Apricot.Base();
+var Base = new Apricot.Base();

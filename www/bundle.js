@@ -1559,7 +1559,7 @@ Base.prototype = {
     init: function () {
         var self = this;
 
-        console.info('base');
+        self.path = 'Apricot.Base';
     }
 };
 
