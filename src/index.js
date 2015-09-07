@@ -15,7 +15,7 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     // モジュールを生成する
     Module: require('./Apricot/Document/Module'),
     // 図面を描画する
-    Render: require('./Apricot/Document/Render')
+    Render: require('./Apricot/Document/Dom')
 });
 
 // Apricot.App.*
