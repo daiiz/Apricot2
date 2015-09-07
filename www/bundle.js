@@ -1669,7 +1669,7 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     // モジュールを生成する
     Module: require('./Apricot/Document/Module'),
     // 図面を描画する
-    Render: require('./Apricot/Document/Render')
+    Render: require('./Apricot/Document/Dom')
 });
 
 // Apricot.App.*
@@ -1678,4 +1678,4 @@ window.Apricot.App = _.extend((window.Apricot.App || {}), {
 
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Module":3,"./Apricot/Document/Render":4,"./Apricot/Document/Zumen":5,"underscore":1}]},{},[6]);
+},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":5,"underscore":1}]},{},[6]);
