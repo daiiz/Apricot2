@@ -1572,7 +1572,7 @@ Base.prototype = {
     init: function () {
         var self = this;
 
-        self.path = 'Apricot.Base';
+        self.name = 'Base';
         self.isCa = self.isChromeApp();
         self.isCb = self.isChrome();
         self.okUA = self.okUserAgent();
@@ -1622,6 +1622,9 @@ module.exports = Base;
 },{}],3:[function(require,module,exports){
 'use strict';
 
+},{}],4:[function(require,module,exports){
+'use strict';
+
 var _ = require('underscore');
 
 // Apricot.*
@@ -1632,13 +1635,13 @@ window.Apricot = _.extend((window.Apricot || {}), {
 // Apricot.Document.*
 // Apricot UI を構築するためのAPIを展開する
 window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
-
+    Zumen: require('./Apricot/Document/Zumen')
 });
 
 // Apricot.App.*
 // 構築された Apricot UI を操作するためのAPIを展開する
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
-    
+
 });
 
-},{"./Apricot/Base":2,"underscore":1}]},{},[3]);
+},{"./Apricot/Base":2,"./Apricot/Document/Zumen":3,"underscore":1}]},{},[4]);

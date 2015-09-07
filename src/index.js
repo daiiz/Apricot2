@@ -10,11 +10,11 @@ window.Apricot = _.extend((window.Apricot || {}), {
 // Apricot.Document.*
 // Apricot UI を構築するためのAPIを展開する
 window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
-
+    Zumen: require('./Apricot/Document/Zumen')
 });
 
 // Apricot.App.*
 // 構築された Apricot UI を操作するためのAPIを展開する
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
-    
+
 });
