@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         watch : {
             scripts : {
                 files : ['src/**/*.js', 'test/**/*.js'],
-                tasks : ['mochaTest', 'browserify']
+                tasks : ['browserify', 'mochaTest']
             }
         }
     });
