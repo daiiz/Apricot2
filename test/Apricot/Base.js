@@ -11,7 +11,7 @@ describe('Apricot.Base', function () {
     });
 
     it('Baseを読み込むことができる', function () {
-        assert.equal(base.path, 'Apricot.Base');
+        assert.equal(base.name, 'Base');
     });
 
     it('UAはChromeAppである', function () {

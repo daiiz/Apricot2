@@ -21,7 +21,7 @@ Base.prototype = {
     init: function () {
         var self = this;
 
-        self.path = 'Apricot.Base';
+        self.name = 'Base';
         self.isCa = self.isChromeApp();
         self.isCb = self.isChrome();
         self.okUA = self.okUserAgent();
