@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
     var pkg = grunt.file.readJSON('package.json');
+    grunt.loadNpmTasks('grunt-mocha-test');
 
     grunt.initConfig({
         browserify : {
@@ -8,10 +9,15 @@ module.exports = function (grunt) {
                 dest : 'www/bundle.js'
             }
         },
+        mochaTest: {
+            test: {
+                src: ['test/**/*.js']
+            }
+        },
         watch : {
             scripts : {
-                files : ['src/**/*.js'],
-                tasks : ['browserify']
+                files : ['src/**/*.js', 'test/**/*.js'],
+                tasks : ['mochaTest', 'browserify']
             }
         }
     });
