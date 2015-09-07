@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/daiz713/Apricot2/issues"
   },
-  "homepage": "https://github.com/daiz713/Apricot2"
+  "homepage": "https://github.com/daiz713/Apricot2",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
 }
