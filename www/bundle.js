@@ -1626,6 +1626,15 @@ arguments[4][3][0].apply(exports,arguments)
 },{"dup":3}],5:[function(require,module,exports){
 'use strict';
 
+var isVisible = function () {
+    return false;
+};
+
+module.exports = isVisible;
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
 var Zumen = function (option) {
     this.init(option || {});
 };
@@ -1639,19 +1648,22 @@ Zumen.prototype = {
         self.modules = [];
 
         self.name = 'Zumen';
-        self.addModule = self.addModule;
+        self = self;
     },
 
     addModule: function (module) {
         var self = this;
 
         self.modules.push(module);
-    }
+    },
+
+    // 表示されているかどうか
+    isVisible: require('./Zumen.isVisible')
 };
 
 module.exports = Zumen;
 
-},{}],6:[function(require,module,exports){
+},{"./Zumen.isVisible":5}],7:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -1672,4 +1684,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     Render: require('./Apricot/Document/Dom')
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":5,"underscore":1}]},{},[6]);
+},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[7]);

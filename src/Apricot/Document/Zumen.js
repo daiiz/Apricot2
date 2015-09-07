@@ -13,14 +13,17 @@ Zumen.prototype = {
         self.modules = [];
 
         self.name = 'Zumen';
-        self.addModule = self.addModule;
+        self = self;
     },
 
     addModule: function (module) {
         var self = this;
 
         self.modules.push(module);
-    }
+    },
+
+    // 表示されているかどうか
+    isVisible: require('./Zumen.isVisible')
 };
 
 module.exports = Zumen;

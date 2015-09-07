@@ -19,6 +19,10 @@ describe('Apricot.Document.Zumen', function () {
         assert.equal(zumen1.id !== zumen2.id, true);
     });
 
+    it('Zumenは最初は非表示である', function () {
+        assert.equal(zumen1.isVisible(), false);
+    });
+
     it('modulesが初期化されている', function () {
         assert.equal(zumen1.modules.length, 0);
     });
