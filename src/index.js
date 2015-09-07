@@ -17,9 +17,3 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     // 図面を描画する
     Render: require('./Apricot/Document/Dom')
 });
-
-// Apricot.App.*
-// 構築された Apricot UI を操作するためのAPIを展開する
-window.Apricot.App = _.extend((window.Apricot.App || {}), {
-
-});

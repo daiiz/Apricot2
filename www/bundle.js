@@ -1672,10 +1672,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     Render: require('./Apricot/Document/Dom')
 });
 
-// Apricot.App.*
-// 構築された Apricot UI を操作するためのAPIを展開する
-window.Apricot.App = _.extend((window.Apricot.App || {}), {
-
-});
-
 },{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":5,"underscore":1}]},{},[6]);
