@@ -22,4 +22,10 @@ describe('Apricot.Document.Zumen', function () {
     it('modulesが初期化されている', function () {
         assert.equal(zumen1.modules.length, 0);
     });
+
+    it('modulesを追加できる', function () {
+        zumen1.addModule({});
+        assert.equal(zumen1.modules.length, 1);
+        assert.equal(zumen2.modules.length, 0);
+    });
 });

@@ -13,6 +13,13 @@ Zumen.prototype = {
         self.modules = [];
 
         self.name = 'Zumen';
+        self.addModule = self.addModule;
+    },
+
+    addModule: function (module) {
+        var self = this;
+
+        self.modules.push(module);
     }
 };
 

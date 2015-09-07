@@ -1620,6 +1620,10 @@ Base.prototype = {
 module.exports = Base;
 
 },{}],3:[function(require,module,exports){
+
+},{}],4:[function(require,module,exports){
+arguments[4][3][0].apply(exports,arguments)
+},{"dup":3}],5:[function(require,module,exports){
 'use strict';
 
 var Zumen = function (option) {
@@ -1635,12 +1639,19 @@ Zumen.prototype = {
         self.modules = [];
 
         self.name = 'Zumen';
+        self.addModule = self.addModule;
+    },
+
+    addModule: function (module) {
+        var self = this;
+
+        self.modules.push(module);
     }
 };
 
 module.exports = Zumen;
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -1653,7 +1664,12 @@ window.Apricot = _.extend((window.Apricot || {}), {
 // Apricot.Document.*
 // Apricot UI を構築するためのAPIを展開する
 window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
-    Zumen: require('./Apricot/Document/Zumen')
+    // 図面を読み込む、または、生成する
+    Zumen: require('./Apricot/Document/Zumen'),
+    // モジュールを生成する
+    Module: require('./Apricot/Document/Module'),
+    // 図面を描画する
+    Render: require('./Apricot/Document/Render')
 });
 
 // Apricot.App.*
@@ -1662,4 +1678,4 @@ window.Apricot.App = _.extend((window.Apricot.App || {}), {
 
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Zumen":3,"underscore":1}]},{},[4]);
+},{"./Apricot/Base":2,"./Apricot/Document/Module":3,"./Apricot/Document/Render":4,"./Apricot/Document/Zumen":5,"underscore":1}]},{},[6]);
