@@ -2,14 +2,17 @@
 
 var assert = require('assert');
 var $ = require('jquery');
+var jsdom = require('jsdom');
+
+var document = jsdom.jsdom('<html><body></body></html>');
 var Zumen = require('../../../src/Apricot/Document/Zumen');
 
 describe('Apricot.Document.Zumen', function () {
     var zumen1, zumen2;
 
     before(function () {
-        zumen1 = new Zumen({id: 'zumen1'});
-        zumen2 = new Zumen({id: 'zumen2'});
+        zumen1 = new Zumen({id: 'zumen1', document: document});
+        zumen2 = new Zumen({id: 'zumen2', document: document});
     });
 
     it('Zumenを読み込むことができる', function () {

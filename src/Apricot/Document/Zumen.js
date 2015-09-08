@@ -1,6 +1,13 @@
 'use strict';
 
 var Zumen = function (option) {
+    // 独自のdocument空間が必要な場合の対応
+    // shadowDOMやテスト対応
+    if (option !== undefined && option.document) {
+        this.document = option.document;
+    }else {
+        this.document = window.document;
+    }
     this.init(option || {});
 };
 
