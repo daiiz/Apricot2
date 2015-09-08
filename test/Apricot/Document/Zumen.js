@@ -41,12 +41,12 @@ describe('Apricot.Document.Zumen', function () {
     });
 
     it('bricksが初期化されている', function () {
-        assert.equal(zumen1.modules.length, 0);
+        assert.equal(zumen1.bricks.length, 0);
     });
 
     it('brickを追加できる', function () {
-        zumen1.addModule([{}]);
-        assert.equal(zumen1.modules.length, 1);
-        assert.equal(zumen2.modules.length, 0);
+        zumen1.addBrick([{}]);
+        assert.equal(zumen1.bricks.length, 1);
+        assert.equal(zumen2.bricks.length, 0);
     });
 });

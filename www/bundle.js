@@ -1651,7 +1651,7 @@ Zumen.prototype = {
         self.uniqueId = 'z' + Math.floor(Math.random() * 1000000000);
         self.id = option.id || self.uniqueId;
         // 図面に含まれるモジュール
-        self.modules = [];
+        self.bricks = [];
 
         // 図面のレシピ
         // 描画に必要な情報はすべてここに含める
@@ -1672,11 +1672,11 @@ Zumen.prototype = {
         self.bindEvents();
     },
 
-    addModule: function (modules) {
+    addBrick: function (bricks) {
         var self = this;
 
-        for(var i = 0; i < modules.length; i++) {
-            self.modules.push(modules[i]);
+        for(var i = 0; i < bricks.length; i++) {
+            self.bricks.push(bricks[i]);
         }
     },
 
@@ -1763,9 +1763,9 @@ var makeDom = function () {
     var self = this;
 
     var r = self.recipe;
-    var d = self.document;
+    var doc = self.document;
 
-    var root = d.createElement(r.role);
+    var root = doc.createElement(r.role);
 
     self.dom = root;
 };
