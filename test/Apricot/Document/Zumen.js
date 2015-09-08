@@ -1,6 +1,7 @@
 'use strict';
 
 var assert = require('assert');
+var $ = require('jquery');
 var Zumen = require('../../../src/Apricot/Document/Zumen');
 
 describe('Apricot.Document.Zumen', function () {
@@ -26,6 +27,11 @@ describe('Apricot.Document.Zumen', function () {
     it('Zumenのデフォルトroleはdivである', function () {
         assert.equal(zumen1.recipe.role, 'div');
     });
+
+    it('Zumenのデフォルト位置は(0, 0)である', function () {
+        assert.equal(zumen1.recipe.design.top, 0);
+        assert.equal(zumen1.recipe.design.left, 0);
+    })
 
     it('modulesが初期化されている', function () {
         assert.equal(zumen1.modules.length, 0);

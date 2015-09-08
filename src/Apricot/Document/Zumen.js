@@ -20,10 +20,15 @@ Zumen.prototype = {
             'prop': {},
             'data': {}
         };
+        self.initRecipe();
+
+        // 図面のDOM
+        self.dom;
+        self.makeDom();
 
         self.name = 'Zumen';
-        self.initRecipe();
         self.api = require('./Zumen.publicAPI');
+        self.bindEvents();
     },
 
     addModule: function (modules) {
@@ -34,8 +39,24 @@ Zumen.prototype = {
         }
     },
 
+    bindEvents: function () {
+        var self = this;
+
+        // 図面のレシピを監視する
+        // 変更が生じたらDomも再構築する
+        Object.observe(self.recipe, function (changes) {
+            // この非同期コールバックが変更を収集
+            changes.forEach(function (change) {
+                console.info(change.type, change.name, change.oldValue);
+            });
+        });
+    },
+
     // レシピを初期化する
     initRecipe: require('./initRecipe'),
+
+    // レシピを基にDOMを構成する
+    makeDom: require('./makeDom'),
 
     isVisible: require('./Zumen.isVisible'),
     css      : require('./css')
