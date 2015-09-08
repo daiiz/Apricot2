@@ -14,7 +14,8 @@ var initRecipe = function () {
 
     // デフォルトのpropertyを指定
     self.recipe.prop = {
-        id: self.id
+        id: self.id,
+        class: self.name
     };
 
     // デフォルトのdatasetを指定

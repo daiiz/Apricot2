@@ -7,6 +7,8 @@ var Zumen = function (option) {
 Zumen.prototype = {
     init: function (option) {
         var self = this;
+
+        self.name = 'Zumen';
         self.uniqueId = 'z' + Math.floor(Math.random() * 1000000000);
         self.id = option.id || self.uniqueId;
         // 図面に含まれるモジュール
@@ -22,7 +24,6 @@ Zumen.prototype = {
         };
         self.initRecipe();
 
-        self.name = 'Zumen';
         self.api = require('./Zumen.publicAPI');
     },
 
