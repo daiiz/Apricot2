@@ -15,6 +15,7 @@ View.prototype = {
     init: function (option) {
         var self = this;
 
+        self.name = 'View';
         // ビューに含まれる図面モデル
         self.zumens = [];
     },

@@ -2,9 +2,6 @@
 
 var assert = require('assert');
 var $ = require('jquery');
-//var jsdom = require('jsdom');
-
-//var document = jsdom.jsdom('<html><body></body></html>');
 var Zumen = require('../../../src/Apricot/Document/Zumen');
 
 describe('Apricot.Document.Zumen', function () {
