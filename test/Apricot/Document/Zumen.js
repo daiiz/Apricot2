@@ -15,38 +15,40 @@ describe('Apricot.Document.Zumen', function () {
         zumen2 = new Zumen({id: 'zumen2', document: document});
     });
 
-    it('Zumenを読み込むことができる', function () {
-        assert.equal(zumen1.name, 'Zumen');
-    });
+    describe('Zumen', function () {
+        it('Zumenを読み込むことができる', function () {
+            assert.equal(zumen1.name, 'Zumen');
+        });
 
-    it('Zumenが独立している', function () {
-        assert.equal(zumen1.id !== zumen2.id, true);
-    });
+        it('Zumenが独立している', function () {
+            assert.equal(zumen1.id !== zumen2.id, true);
+        });
 
-    it('ZumenのAPIを呼ぶことができる', function () {
-        assert.equal(zumen1.api().version, 0);
-    });
+        it('ZumenのAPIを呼ぶことができる', function () {
+            assert.equal(zumen1.api().version, 0);
+        });
 
-    it('Zumenのデフォルトroleはdivである', function () {
-        assert.equal(zumen1.recipe.role, 'div');
-    });
+        it('Zumenのデフォルトroleはdivである', function () {
+            assert.equal(zumen1.recipe.role, 'div');
+        });
 
-    it('Zumenのデフォルト位置は(0, 0)である', function () {
-        assert.equal(zumen1.recipe.design.top, 0);
-        assert.equal(zumen1.recipe.design.left, 0);
-    });
+        it('Zumenのデフォルト位置は(0, 0)である', function () {
+            assert.equal(zumen1.recipe.design.top, 0);
+            assert.equal(zumen1.recipe.design.left, 0);
+        });
 
-    it('Zumenのdocumentが定義されている', function () {
-        assert.equal(zumen1.document !== undefined, true);
-    });
+        it('Zumenのdocumentが定義されている', function () {
+            assert.equal(zumen1.document !== undefined, true);
+        });
 
-    it('bricksが初期化されている', function () {
-        assert.equal(zumen1.bricks.length, 0);
-    });
+        it('bricksが初期化されている', function () {
+            assert.equal(zumen1.bricks.length, 0);
+        });
 
-    it('brickを追加できる', function () {
-        zumen1.addBrick([{}]);
-        assert.equal(zumen1.bricks.length, 1);
-        assert.equal(zumen2.bricks.length, 0);
+        it('brickを追加できる', function () {
+            zumen1.addBrick([{}]);
+            assert.equal(zumen1.bricks.length, 1);
+            assert.equal(zumen2.bricks.length, 0);
+        });
     });
 });
