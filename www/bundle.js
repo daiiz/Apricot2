@@ -1648,7 +1648,17 @@ Zumen.prototype = {
         // 図面に含まれるモジュール
         self.modules = [];
 
+        // 図面のレシピ
+        // 描画に必要な情報はすべてここに含める
+        self.recipe = {
+            'role': 'div',
+            'design': {},
+            'prop': {},
+            'data': {}
+        };
+
         self.name = 'Zumen';
+        self.initRecipe();
         self.api = require('./Zumen.publicAPI');
     },
 
@@ -1660,13 +1670,16 @@ Zumen.prototype = {
         }
     },
 
+    // レシピを初期化する
+    initRecipe: require('./initRecipe'),
+
     isVisible: require('./Zumen.isVisible'),
     css      : require('./css')
 };
 
 module.exports = Zumen;
 
-},{"./Zumen.isVisible":5,"./Zumen.publicAPI":7,"./css":8}],7:[function(require,module,exports){
+},{"./Zumen.isVisible":5,"./Zumen.publicAPI":7,"./css":8,"./initRecipe":9}],7:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -1691,6 +1704,34 @@ module.exports = publicAPI;
 },{}],8:[function(require,module,exports){
 arguments[4][3][0].apply(exports,arguments)
 },{"dup":3}],9:[function(require,module,exports){
+// self.recipe のメンバを初期化する
+var initRecipe = function () {
+    var self = this;
+
+    // デフォルトのdesign CSSを指定
+    self.recipe.design = {
+        position: 'absolute',
+        display : 'none'
+    };
+
+    // 位置を(0px, 0px)に指定
+    self.recipe.design.top = 0;
+    self.recipe.design.left = 0;
+
+    // デフォルトのpropertyを指定
+    self.recipe.prop = {
+        id: self.id
+    };
+
+    // デフォルトのdatasetを指定
+    self.recipe.data = {
+        'unique-id': self.uniqueId
+    }
+};
+
+module.exports = initRecipe;
+
+},{}],10:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -1711,4 +1752,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     Render: require('./Apricot/Document/Dom')
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[9]);
+},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[10]);

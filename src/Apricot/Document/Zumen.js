@@ -12,7 +12,17 @@ Zumen.prototype = {
         // 図面に含まれるモジュール
         self.modules = [];
 
+        // 図面のレシピ
+        // 描画に必要な情報はすべてここに含める
+        self.recipe = {
+            'role': 'div',
+            'design': {},
+            'prop': {},
+            'data': {}
+        };
+
         self.name = 'Zumen';
+        self.initRecipe();
         self.api = require('./Zumen.publicAPI');
     },
 
@@ -23,6 +33,9 @@ Zumen.prototype = {
             self.modules.push(modules[i]);
         }
     },
+
+    // レシピを初期化する
+    initRecipe: require('./initRecipe'),
 
     isVisible: require('./Zumen.isVisible'),
     css      : require('./css')

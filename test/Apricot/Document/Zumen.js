@@ -23,6 +23,10 @@ describe('Apricot.Document.Zumen', function () {
         assert.equal(zumen1.api().version, 0);
     });
 
+    it('Zumenのデフォルトroleはdivである', function () {
+        assert.equal(zumen1.recipe.role, 'div');
+    });
+
     it('modulesが初期化されている', function () {
         assert.equal(zumen1.modules.length, 0);
     });
