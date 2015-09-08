@@ -2,17 +2,17 @@
 
 var assert = require('assert');
 var $ = require('jquery');
-var jsdom = require('jsdom');
+//var jsdom = require('jsdom');
 
-var document = jsdom.jsdom('<html><body></body></html>');
+//var document = jsdom.jsdom('<html><body></body></html>');
 var Zumen = require('../../../src/Apricot/Document/Zumen');
 
 describe('Apricot.Document.Zumen', function () {
     var zumen1, zumen2;
 
     before(function () {
-        zumen1 = new Zumen({id: 'zumen1', document: document});
-        zumen2 = new Zumen({id: 'zumen2', document: document});
+        zumen1 = new Zumen({id: 'zumen1'});
+        zumen2 = new Zumen({id: 'zumen2'});
     });
 
     describe('Zumen', function () {
@@ -37,10 +37,6 @@ describe('Apricot.Document.Zumen', function () {
             assert.equal(zumen1.recipe.design.left, 0);
         });
 
-        it('Zumenのdocumentが定義されている', function () {
-            assert.equal(zumen1.document !== undefined, true);
-        });
-
         it('bricksが初期化されている', function () {
             assert.equal(zumen1.bricks.length, 0);
         });
@@ -49,6 +45,12 @@ describe('Apricot.Document.Zumen', function () {
             zumen1.addBrick([{}]);
             assert.equal(zumen1.bricks.length, 1);
             assert.equal(zumen2.bricks.length, 0);
+        });
+    });
+
+    describe('Zumen API', function () {
+        it('デフォルトで図面は非表示である', function () {
+            assert.equal(zumen1.api(1).isVisible(), false);
         });
     });
 });
