@@ -1622,8 +1622,6 @@ module.exports = Base;
 },{}],3:[function(require,module,exports){
 
 },{}],4:[function(require,module,exports){
-arguments[4][3][0].apply(exports,arguments)
-},{"dup":3}],5:[function(require,module,exports){
 'use strict';
 
 // 表示されているかどうか
@@ -1633,10 +1631,17 @@ var isVisible = function () {
 
 module.exports = isVisible;
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var Zumen = function (option) {
+    // 独自のdocument空間が必要な場合の対応
+    // shadowDOMやテスト対応
+    if (option !== undefined && option.document) {
+        this.document = option.document;
+    }else {
+        this.document = window.document;
+    }
     this.init(option || {});
 };
 
@@ -1700,7 +1705,7 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.isVisible":5,"./Zumen.publicAPI":7,"./css":8,"./initRecipe":9,"./makeDom":10}],7:[function(require,module,exports){
+},{"./Zumen.isVisible":4,"./Zumen.publicAPI":6,"./css":7,"./initRecipe":8,"./makeDom":9}],6:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -1722,9 +1727,9 @@ var publicAPI = function (apiVersion) {
 
 module.exports = publicAPI;
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 arguments[4][3][0].apply(exports,arguments)
-},{"dup":3}],9:[function(require,module,exports){
+},{"dup":3}],8:[function(require,module,exports){
 // self.recipe のメンバを初期化する
 var initRecipe = function () {
     var self = this;
@@ -1752,15 +1757,22 @@ var initRecipe = function () {
 
 module.exports = initRecipe;
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // レシピが更新されたときに実行されて、self.domを更新する
 var makeDom = function () {
+    var self = this;
 
+    var r = self.recipe;
+    var d = self.document;
+
+    var root = d.createElement(r.role);
+
+    self.dom = root;
 };
 
 module.exports = makeDom;
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -1775,10 +1787,8 @@ window.Apricot = _.extend((window.Apricot || {}), {
 window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     // 図面を読み込む、または、生成する
     Zumen: require('./Apricot/Document/Zumen'),
-    // モジュールを生成する
-    Module: require('./Apricot/Document/Module'),
-    // 図面を描画する
-    Render: require('./Apricot/Document/Dom')
+    // ブリックを生成する
+    Brick: require('./Apricot/Document/Brick')
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Dom":3,"./Apricot/Document/Module":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[11]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/Zumen":5,"underscore":1}]},{},[10]);
