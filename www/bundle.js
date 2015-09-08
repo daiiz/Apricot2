@@ -1624,17 +1624,7 @@ module.exports = Base;
 },{}],4:[function(require,module,exports){
 'use strict';
 
-// 表示されているかどうか
-var isVisible = function () {
-    return false;
-};
-
-module.exports = isVisible;
-
-},{}],5:[function(require,module,exports){
-'use strict';
-
-var Zumen = function (option) {
+var View = function (option) {
     // 独自のdocument空間が必要な場合の対応
     // shadowDOMやテスト対応
     if (option !== undefined && option.document) {
@@ -1642,6 +1632,50 @@ var Zumen = function (option) {
     }else {
         this.document = window.document;
     }
+    this.init(option || {});
+};
+
+View.prototype = {
+    init: function (option) {
+        var self = this;
+
+        // ビューに含まれる図面モデル
+        self.zumens = [];
+    },
+
+
+    bindEvents: function () {
+        var self = this;
+
+        // 変更が生じたらDomも再構築する
+        Object.observe(self.zumens, function (changes) {
+            // この非同期コールバックが変更を収集
+            changes.forEach(function (change) {
+                console.info(change.type, change.name, change.oldValue);
+            });
+        });
+    },
+
+    // レシピを基にDOMを構成する
+    makeDom: require('./makeDom')
+};
+
+module.exports = View;
+
+},{"./makeDom":10}],5:[function(require,module,exports){
+'use strict';
+
+// 表示されているかどうか
+var isVisible = function () {
+    return false;
+};
+
+module.exports = isVisible;
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
+var Zumen = function (option) {
     this.init(option || {});
 };
 
@@ -1663,13 +1697,8 @@ Zumen.prototype = {
         };
         self.initRecipe();
 
-        // 図面のDOM
-        self.dom;
-        self.makeDom();
-
         self.name = 'Zumen';
         self.api = require('./Zumen.publicAPI');
-        self.bindEvents();
     },
 
     addBrick: function (bricks) {
@@ -1680,24 +1709,8 @@ Zumen.prototype = {
         }
     },
 
-    bindEvents: function () {
-        var self = this;
-
-        // 図面のレシピを監視する
-        // 変更が生じたらDomも再構築する
-        Object.observe(self.recipe, function (changes) {
-            // この非同期コールバックが変更を収集
-            changes.forEach(function (change) {
-                console.info(change.type, change.name, change.oldValue);
-            });
-        });
-    },
-
     // レシピを初期化する
     initRecipe: require('./initRecipe'),
-
-    // レシピを基にDOMを構成する
-    makeDom: require('./makeDom'),
 
     isVisible: require('./Zumen.isVisible'),
     css      : require('./css')
@@ -1705,7 +1718,7 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.isVisible":4,"./Zumen.publicAPI":6,"./css":7,"./initRecipe":8,"./makeDom":9}],6:[function(require,module,exports){
+},{"./Zumen.isVisible":5,"./Zumen.publicAPI":7,"./css":8,"./initRecipe":9}],7:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -1727,9 +1740,9 @@ var publicAPI = function (apiVersion) {
 
 module.exports = publicAPI;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 arguments[4][3][0].apply(exports,arguments)
-},{"dup":3}],8:[function(require,module,exports){
+},{"dup":3}],9:[function(require,module,exports){
 // self.recipe のメンバを初期化する
 var initRecipe = function () {
     var self = this;
@@ -1757,7 +1770,7 @@ var initRecipe = function () {
 
 module.exports = initRecipe;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 // レシピが更新されたときに実行されて、self.domを更新する
 var makeDom = function () {
     var self = this;
@@ -1772,7 +1785,7 @@ var makeDom = function () {
 
 module.exports = makeDom;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -1788,7 +1801,9 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     // 図面を読み込む、または、生成する
     Zumen: require('./Apricot/Document/Zumen'),
     // ブリックを生成する
-    Brick: require('./Apricot/Document/Brick')
+    Brick: require('./Apricot/Document/Brick'),
+    // 図面を表示して管理する
+    View : require('./Apricot/Document/View')
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/Zumen":5,"underscore":1}]},{},[10]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/View":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[11]);
