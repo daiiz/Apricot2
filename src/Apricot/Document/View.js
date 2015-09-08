@@ -46,7 +46,7 @@ View.prototype = {
     },
 
     // レシピを基にDOMを構成する
-    makeDom: require('./makeDom')
+    makeDom: require('./View.makeDom')
 };
 
 module.exports = View;

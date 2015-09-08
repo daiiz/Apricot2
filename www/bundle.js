@@ -1638,11 +1638,24 @@ var View = function (option) {
 View.prototype = {
     init: function (option) {
         var self = this;
+        self.uniqueId = 'v' + Math.floor(Math.random() * 1000000000);
+        self.id = option.id || self.uniqueId;
 
+        self.name = 'View';
         // ビューに含まれる図面モデル
         self.zumens = [];
+
+        self.makeDom = self.makeDom;
+        self.addZumen = self.addZumen;
     },
 
+    addZumen: function (zumens) {
+        var self = this;
+
+        for(var i = 0; i < zumens.length; i++) {
+            self.zumens.push(zumens[i]);
+        }
+    },
 
     bindEvents: function () {
         var self = this;
@@ -1657,12 +1670,73 @@ View.prototype = {
     },
 
     // レシピを基にDOMを構成する
-    makeDom: require('./makeDom')
+    makeDom: require('./View.makeDom')
 };
 
 module.exports = View;
 
-},{"./makeDom":10}],5:[function(require,module,exports){
+},{"./View.makeDom":5}],5:[function(require,module,exports){
+// 図面配列が更新されたときに実行されて、self.domを更新する
+var makeDom = function () {
+    var self = this;
+
+    var zumens = self.zumens;
+    var doc = self.document;
+    // zumen --> dom
+    self.zumenDom = [];
+    self.brickDom = [];
+
+    // 図面を1つずつ見る
+    zumens.forEach(function (zumen) {
+        var recipe = zumen.recipe;
+        var role   = recipe.role || 'div';
+        var prop   = recipe.prop || {};
+        var design = recipe.design || {};
+        var data   = recipe.data || {};
+
+        // 図面のなかを解析する
+        var bricks = zumen.bricks;
+        bricks.forEach(function (brick) {
+            // brick --> DOM
+        });
+
+        // HTMLを生成する
+        var zumenElem = createZumenHtml(doc, role, prop, data);
+        // スタイルを適用する
+        zumenElem = createZumenStyle(zumenElem, design);
+
+        self.zumenDom.push(zumenElem);
+    });
+
+    self.dom = {};
+};
+
+var createZumenHtml = function (doc, role, prop, data) {
+    var elem = doc.createElement(role);
+    // 要素に属性を設定
+    var attrs = Object.keys(prop);
+    attrs.forEach(function (attr) {
+        var val = prop[attr];
+        elem.setAttribute(attr, val);
+    });
+    // dataset属性を設定
+    attrs = Object.keys(data);
+    attrs.forEach(function (attr) {
+        val = data[attr];
+        attr = 'data-' + attr;
+        elem.setAttribute(attr, val);
+    });
+
+    return elem;
+};
+
+var createZumenStyle = function (elem, design) {
+    return elem;
+};
+
+module.exports = makeDom;
+
+},{}],6:[function(require,module,exports){
 'use strict';
 
 // 表示されているかどうか
@@ -1672,7 +1746,7 @@ var isVisible = function () {
 
 module.exports = isVisible;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var Zumen = function (option) {
@@ -1682,6 +1756,8 @@ var Zumen = function (option) {
 Zumen.prototype = {
     init: function (option) {
         var self = this;
+
+        self.name = 'Zumen';
         self.uniqueId = 'z' + Math.floor(Math.random() * 1000000000);
         self.id = option.id || self.uniqueId;
         // 図面に含まれるモジュール
@@ -1697,7 +1773,6 @@ Zumen.prototype = {
         };
         self.initRecipe();
 
-        self.name = 'Zumen';
         self.api = require('./Zumen.publicAPI');
     },
 
@@ -1718,7 +1793,7 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.isVisible":5,"./Zumen.publicAPI":7,"./css":8,"./initRecipe":9}],7:[function(require,module,exports){
+},{"./Zumen.isVisible":6,"./Zumen.publicAPI":8,"./css":9,"./initRecipe":10}],8:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -1740,9 +1815,9 @@ var publicAPI = function (apiVersion) {
 
 module.exports = publicAPI;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 arguments[4][3][0].apply(exports,arguments)
-},{"dup":3}],9:[function(require,module,exports){
+},{"dup":3}],10:[function(require,module,exports){
 // self.recipe のメンバを初期化する
 var initRecipe = function () {
     var self = this;
@@ -1759,7 +1834,8 @@ var initRecipe = function () {
 
     // デフォルトのpropertyを指定
     self.recipe.prop = {
-        id: self.id
+        id: self.id,
+        class: self.name
     };
 
     // デフォルトのdatasetを指定
@@ -1769,21 +1845,6 @@ var initRecipe = function () {
 };
 
 module.exports = initRecipe;
-
-},{}],10:[function(require,module,exports){
-// レシピが更新されたときに実行されて、self.domを更新する
-var makeDom = function () {
-    var self = this;
-
-    var r = self.recipe;
-    var doc = self.document;
-
-    var root = doc.createElement(r.role);
-
-    self.dom = root;
-};
-
-module.exports = makeDom;
 
 },{}],11:[function(require,module,exports){
 'use strict';
@@ -1806,4 +1867,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     View : require('./Apricot/Document/View')
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/View":4,"./Apricot/Document/Zumen":6,"underscore":1}]},{},[11]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/View":4,"./Apricot/Document/Zumen":7,"underscore":1}]},{},[11]);

@@ -27,5 +27,21 @@ describe('Apricot.Document.View', function () {
             view1.addZumen([zumen1]);
             assert.equal(view1.zumens.length, 1);
         });
+
+        it('メソッドmakeDomが正常に動く', function () {
+            view1.makeDom();
+            assert.equal(view1.zumenDom.length, 1);
+            assert.equal(view1.dom !== undefined, true);
+        });
+
+        it('zumenにidが割り当てられている', function () {
+            var elem = view1.zumenDom[0];
+            assert.equal(elem.id, 'zumen1');
+        });
+
+        it('zumenにclassが割り当てられている', function () {
+            var elem = view1.zumenDom[0];
+            assert.equal(elem.className, 'Zumen');
+        });
     });
 });
