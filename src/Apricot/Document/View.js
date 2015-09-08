@@ -14,12 +14,24 @@ var View = function (option) {
 View.prototype = {
     init: function (option) {
         var self = this;
+        self.uniqueId = 'v' + Math.floor(Math.random() * 1000000000);
+        self.id = option.id || self.uniqueId;
 
         self.name = 'View';
         // ビューに含まれる図面モデル
         self.zumens = [];
+
+        self.makeDom = self.makeDom;
+        self.addZumen = self.addZumen;
     },
 
+    addZumen: function (zumens) {
+        var self = this;
+
+        for(var i = 0; i < zumens.length; i++) {
+            self.zumens.push(zumens[i]);
+        }
+    },
 
     bindEvents: function () {
         var self = this;

@@ -15,4 +15,5 @@ var z = new Apricot.Document.Zumen({id: 'zumen1'});
 // z.addBrick([b]);
 
 // Document Object Model （DOM）を取得する
-var v = new Apricot.Document.View([z]);
+var v = new Apricot.Document.View({id: 'view1'});
+v.addZumen([z]);
