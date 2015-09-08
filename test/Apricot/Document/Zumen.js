@@ -34,13 +34,17 @@ describe('Apricot.Document.Zumen', function () {
     it('Zumenのデフォルト位置は(0, 0)である', function () {
         assert.equal(zumen1.recipe.design.top, 0);
         assert.equal(zumen1.recipe.design.left, 0);
-    })
+    });
 
-    it('modulesが初期化されている', function () {
+    it('Zumenのdocumentが定義されている', function () {
+        assert.equal(zumen1.document !== undefined, true);
+    });
+
+    it('bricksが初期化されている', function () {
         assert.equal(zumen1.modules.length, 0);
     });
 
-    it('modulesを追加できる', function () {
+    it('brickを追加できる', function () {
         zumen1.addModule([{}]);
         assert.equal(zumen1.modules.length, 1);
         assert.equal(zumen2.modules.length, 0);
