@@ -43,5 +43,11 @@ describe('Apricot.Document.View', function () {
             var elem = view1.zumenDom[0];
             assert.equal(elem.className, 'Zumen');
         });
+
+        it('zumenのデフォルト位置は(0px, 0px)である', function () {
+            var elem = view1.zumenDom[0];
+            assert.equal(elem.style.top, '0px');
+            assert.equal(elem.style.left, '0px');
+        });
     });
 });

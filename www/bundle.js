@@ -1731,7 +1731,29 @@ var createZumenHtml = function (doc, role, prop, data) {
 };
 
 var createZumenStyle = function (elem, design) {
+    var attrs = Object.keys(design);
+    attrs.forEach(function (attr) {
+        // 頭文字が小文字のときはそのままCSS
+        if (attr[0].match(/[a-z]/)) {
+            elem.style[attr] = design[attr];
+        }else {
+            var css = createCSS(attr, design[attr]);
+            var attr = css[0];
+            var val = css[1];
+            elem.style[attr] = val;
+        }
+    });
     return elem;
+};
+
+var createCSS = function (attr, val) {
+    // trueのとき、画面の横幅の大きさを返す
+    if (attr === 'FullWidth') {
+        if (val) {
+            return ['width', window.innerWidth];
+        }
+        return ['width', 0];
+    }
 };
 
 module.exports = makeDom;
