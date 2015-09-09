@@ -1549,13 +1549,6 @@
 }.call(this));
 
 },{}],2:[function(require,module,exports){
-var importView = function () {
-
-};
-
-module.exports = importView;
-
-},{}],3:[function(require,module,exports){
 'use strict';
 
 // Chrome App であることをシミュレートするときに使う
@@ -1626,9 +1619,9 @@ Base.prototype = {
 
 module.exports = Base;
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var View = function (option) {
@@ -1681,7 +1674,7 @@ View.prototype = {
 
 module.exports = View;
 
-},{"./View.makeDom":6}],6:[function(require,module,exports){
+},{"./View.makeDom":5}],5:[function(require,module,exports){
 // 図面配列が更新されたときに実行されて、self.domを更新する
 var makeDom = function () {
     var self = this;
@@ -1807,7 +1800,7 @@ var getRandomRGB = function() {
 
 module.exports = makeDom;
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 // 表示されているかどうか
@@ -1817,7 +1810,7 @@ var isVisible = function () {
 
 module.exports = isVisible;
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var Zumen = function (option) {
@@ -1886,7 +1879,7 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.isVisible":7,"./Zumen.publicAPI":9,"./css":10,"./initRecipe":11}],9:[function(require,module,exports){
+},{"./Zumen.isVisible":6,"./Zumen.publicAPI":8,"./css":9,"./initRecipe":10}],8:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -1908,9 +1901,9 @@ var publicAPI = function (apiVersion) {
 
 module.exports = publicAPI;
 
-},{}],10:[function(require,module,exports){
-arguments[4][4][0].apply(exports,arguments)
-},{"dup":4}],11:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
+arguments[4][3][0].apply(exports,arguments)
+},{"dup":3}],10:[function(require,module,exports){
 // self.recipe のメンバを初期化する
 var initRecipe = function () {
     var self = this;
@@ -1939,7 +1932,7 @@ var initRecipe = function () {
 
 module.exports = initRecipe;
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -1964,8 +1957,6 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
 // Apricot UI を Apricot JavaScript APIで操作する
 // ここに展開されるAPIでは、Apricot UIを新規に作成することはできない（DOMは可能）
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
-    // ビューをインポートする
-    importView: require('./Apricot/App/importView')
 });
 
-},{"./Apricot/App/importView":2,"./Apricot/Base":3,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":8,"underscore":1}]},{},[12]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/View":4,"./Apricot/Document/Zumen":7,"underscore":1}]},{},[11]);
