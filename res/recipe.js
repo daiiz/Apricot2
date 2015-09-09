@@ -21,7 +21,7 @@ z2.addRecipe('design', {
 
 // Apricot Brick Model を生成する
 // これで生成されるものはAZM.bricksの要素と同じデータ構造をもつ
-// var b = new Apricot.Document.Brick({id: 'brick1'});
+var b = new Apricot.Document.Brick({id: 'brick1'});
 
 // 生成したAMMはAZMに追加しないと表示されない
 // z.addBrick([b]);

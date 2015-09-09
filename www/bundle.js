@@ -1620,6 +1620,21 @@ Base.prototype = {
 module.exports = Base;
 
 },{}],3:[function(require,module,exports){
+'use strict';
+
+var Brick = function (option) {
+    this.init(option || {});
+};
+
+Brick.prototype = {
+    init: function (option) {
+        var self = this;
+
+        self.name = 'Brick';
+    }
+};
+
+module.exports = Brick;
 
 },{}],4:[function(require,module,exports){
 'use strict';
@@ -1902,8 +1917,8 @@ var publicAPI = function (apiVersion) {
 module.exports = publicAPI;
 
 },{}],9:[function(require,module,exports){
-arguments[4][3][0].apply(exports,arguments)
-},{"dup":3}],10:[function(require,module,exports){
+
+},{}],10:[function(require,module,exports){
 // self.recipe のメンバを初期化する
 var initRecipe = function () {
     var self = this;
