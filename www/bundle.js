@@ -1761,12 +1761,20 @@ var createCSS = function (attr, val) {
         return ['height', val];
     }
 
-    // ブリックの背景色をランダムに返す
+    // 背景色をランダムに返す
     else if (attr === 'BrickColor') {
         if (val === 'random') {
             return ['backgroundColor', getRandomRGB()]
         }
         return ['backgroundColor', val];
+    }
+
+    // 表示／非表示状態を返す
+    else if (attr === 'Visible') {
+        if (val === true) {
+            return ['display', 'block'];
+        }
+        return ['display', 'none'];
     }
 
     return [attr, val];

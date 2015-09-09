@@ -5,12 +5,19 @@ var Base = new Apricot.Base();
 
 // 第2引数に与えた図面ファイルから Apricot Zumen Model を得る
 // 図面ファイルが省略された場合は空のAZMを返す
-var z = new Apricot.Document.Zumen({id: 'zumen1'});
-z.addRecipe('design', {
+var z1 = new Apricot.Document.Zumen({id: 'zumen1'});
+var z2 = new Apricot.Document.Zumen({id: 'zumen2'});
+z1.addRecipe('design', {
     Width     : 'full',
-    Height    : 45,
+    Height    : 185,
     BrickColor: 'random'
 });
+z2.addRecipe('design', {
+    Width     : 'full',
+    Height    : 60,
+    Visible   : true,
+    BrickColor: 'random'
+})
 
 // Apricot Brick Model を生成する
 // これで生成されるものはAZM.bricksの要素と同じデータ構造をもつ
@@ -21,13 +28,14 @@ z.addRecipe('design', {
 
 // Document Object Model （DOM）を取得する
 var v = new Apricot.Document.View({id: 'view1'});
-v.addZumen([z]);
+v.addZumen([z1, z2]);
 
 // TODO: 自動でやって欲しい感ある
 v.makeDom();
 
 // TODO: APIを用意する
-
-
-// 動作確認用のコード
-console.info(v.zumenDom[0]);
+v.zumenDom.forEach(function (zumen) {
+    document.body.appendChild(zumen);
+    console.info(zumen);
+});
+v.zumenDom[0].style.display = 'block';
