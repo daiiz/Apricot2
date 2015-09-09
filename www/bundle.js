@@ -1748,11 +1748,11 @@ var createZumenStyle = function (elem, design) {
 
 var createCSS = function (attr, val) {
     // trueのとき、画面の横幅の大きさを返す
-    if (attr === 'FullWidth') {
-        if (val) {
+    if (attr === 'Width') {
+        if (val === 'full') {
             return ['width', window.innerWidth];
         }
-        return ['width', 0];
+        return ['width', val];
     }
     return [attr, val];
 };

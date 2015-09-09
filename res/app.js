@@ -7,7 +7,8 @@ var Base = new Apricot.Base();
 // 図面ファイルが省略された場合は空のAZMを返す
 var z = new Apricot.Document.Zumen({id: 'zumen1'});
 z.addRecipe('design', {
-    FullWidth: true
+    Width  : 'full',
+    Height : 45,
 });
 
 // Apricot Brick Model （ABM） を生成する
@@ -20,3 +21,5 @@ z.addRecipe('design', {
 // Document Object Model （DOM）を取得する
 var v = new Apricot.Document.View({id: 'view1'});
 v.addZumen([z]);
+v.makeDom();
+console.info(v.zumenDom[0]);
