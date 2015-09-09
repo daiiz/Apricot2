@@ -22,5 +22,6 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
 // Apricot UI を Apricot JavaScript APIで操作する
 // ここに展開されるAPIでは、Apricot UIを新規に作成することはできない（DOMは可能）
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
-
+    // ビューをインポートする
+    importView: require('./Apricot/App/importView')
 });
