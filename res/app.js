@@ -8,7 +8,7 @@ var Base = new Apricot.Base();
 var z = new Apricot.Document.Zumen({id: 'zumen1'});
 z.addRecipe('design', {
     Width  : 'full',
-    Height : 45,
+    Height : 45
 });
 
 // Apricot Brick Model （ABM） を生成する

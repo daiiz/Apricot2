@@ -1747,13 +1747,21 @@ var createZumenStyle = function (elem, design) {
 };
 
 var createCSS = function (attr, val) {
-    // trueのとき、画面の横幅の大きさを返す
+    // 横幅の大きさを返す
     if (attr === 'Width') {
         if (val === 'full') {
             return ['width', window.innerWidth];
         }
         return ['width', val];
     }
+    // 高さを返す
+    if (attr === 'Height') {
+        if (val === 'full') {
+            return ['height', window.innerHeight];
+        }
+        return ['height', val];
+    }
+
     return [attr, val];
 };
 
