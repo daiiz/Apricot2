@@ -24,6 +24,9 @@ describe('Apricot.Document.View', function () {
 
         it('zumenを追加できる', function () {
             assert.equal(view1.zumens.length, 0);
+            zumen1.addRecipe('design', {
+                'FooBar': 'foobar'
+            });
             view1.addZumen([zumen1]);
             assert.equal(view1.zumens.length, 1);
         });
@@ -48,6 +51,11 @@ describe('Apricot.Document.View', function () {
             var elem = view1.zumenDom[0];
             assert.equal(elem.style.top, '0px');
             assert.equal(elem.style.left, '0px');
+        });
+
+        it('メソッドcreateCSSによってCSSが生成されている', function () {
+            var elem = view1.zumenDom[0];
+            assert.equal(elem.style.FooBar, 'foobar');
         });
     });
 });

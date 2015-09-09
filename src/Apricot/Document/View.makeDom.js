@@ -76,6 +76,7 @@ var createCSS = function (attr, val) {
         }
         return ['width', 0];
     }
+    return [attr, val];
 };
 
 module.exports = makeDom;

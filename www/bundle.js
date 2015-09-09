@@ -1754,6 +1754,7 @@ var createCSS = function (attr, val) {
         }
         return ['width', 0];
     }
+    return [attr, val];
 };
 
 module.exports = makeDom;
@@ -1804,6 +1805,17 @@ Zumen.prototype = {
         for(var i = 0; i < bricks.length; i++) {
             self.bricks.push(bricks[i]);
         }
+    },
+
+    addRecipe: function (recipeKey, newRecipe) {
+        var self = this;
+
+        var attrs = Object.keys(newRecipe);
+        var recipe = self.recipe[recipeKey];
+        attrs.forEach(function (attr) {
+            recipe[attr] = newRecipe[attr];
+        });
+        return true;
     },
 
     // レシピを初期化する
