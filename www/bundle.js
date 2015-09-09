@@ -1694,16 +1694,17 @@ var makeDom = function () {
         var design = recipe.design || {};
         var data   = recipe.data || {};
 
-        // 図面のなかを解析する
-        var bricks = zumen.bricks;
-        bricks.forEach(function (brick) {
-            // brick --> DOM
-        });
-
         // HTMLを生成する
         var zumenElem = createZumenHtml(doc, role, prop, data);
         // スタイルを適用する
         zumenElem = createZumenStyle(zumenElem, design);
+
+        // 図面のなかを解析する
+        var bricks = zumen.bricks;
+        bricks.forEach(function (brick) {
+            // brick --> DOM
+            // zumenElemの中に挿入する
+        });
 
         self.zumenDom.push(zumenElem);
     });
@@ -1754,16 +1755,32 @@ var createCSS = function (attr, val) {
         }
         return ['width', val];
     }
+
     // 高さを返す
-    if (attr === 'Height') {
+    else if (attr === 'Height') {
         if (val === 'full') {
             return ['height', window.innerHeight];
         }
         return ['height', val];
     }
 
+    // ブリックの背景色をランダムに返す
+    else if (attr === 'BrickColor') {
+        if (val === 'random') {
+            return ['backgroundColor', getRandomRGB()]
+        }
+        return ['backgroundColor', val];
+    }
+
     return [attr, val];
 };
+
+var getRandomRGB = function() {
+    var r = Math.floor(Math.random() * 255).toString(16);
+    var g = Math.floor(Math.random() * 255).toString(16);
+    var b = Math.floor(Math.random() * 255).toString(16);
+    return "#" + r + g + b;
+}
 
 module.exports = makeDom;
 
@@ -1824,6 +1841,17 @@ Zumen.prototype = {
             recipe[attr] = newRecipe[attr];
         });
         return true;
+    },
+
+    setRecipe: function (recipeKey, newRecipe) {
+        var self = this;
+
+        if (recipeKey !== undefined) {
+            var recipe = self.recipe[recipeKey];
+            recipe = newRecipe;
+            return true;
+        }
+        return false;
     },
 
     // レシピを初期化する
