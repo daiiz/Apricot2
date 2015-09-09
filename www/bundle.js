@@ -1644,9 +1644,6 @@ View.prototype = {
         self.name = 'View';
         // ビューに含まれる図面モデル
         self.zumens = [];
-
-        self.makeDom = self.makeDom;
-        self.addZumen = self.addZumen;
     },
 
     addZumen: function (zumens) {
