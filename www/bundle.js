@@ -1644,6 +1644,8 @@ View.prototype = {
         self.name = 'View';
         // ビューに含まれる図面モデル
         self.zumens = [];
+        self.zumenDom = [];
+        self.bindEvents();
     },
 
     addZumen: function (zumens) {
@@ -1661,7 +1663,7 @@ View.prototype = {
         Object.observe(self.zumens, function (changes) {
             // この非同期コールバックが変更を収集
             changes.forEach(function (change) {
-                console.info(change.type, change.name, change.oldValue);
+                // console.info(change.type, change.name, change.oldValue);
             });
         });
     },
@@ -1949,6 +1951,13 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
     Brick: require('./Apricot/Document/Brick'),
     // 図面を表示して管理する
     View : require('./Apricot/Document/View')
+});
+
+// Apricot.App.*
+// Apricot UI を Apricot JavaScript APIで操作する
+// ここに展開されるAPIでは、Apricot UIを新規に作成することはできない（DOMは可能）
+window.Apricot.App = _.extend((window.Apricot.App || {}), {
+
 });
 
 },{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/View":4,"./Apricot/Document/Zumen":7,"underscore":1}]},{},[11]);

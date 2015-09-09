@@ -20,6 +20,8 @@ View.prototype = {
         self.name = 'View';
         // ビューに含まれる図面モデル
         self.zumens = [];
+        self.zumenDom = [];
+        self.bindEvents();
     },
 
     addZumen: function (zumens) {
@@ -37,7 +39,7 @@ View.prototype = {
         Object.observe(self.zumens, function (changes) {
             // この非同期コールバックが変更を収集
             changes.forEach(function (change) {
-                console.info(change.type, change.name, change.oldValue);
+                // console.info(change.type, change.name, change.oldValue);
             });
         });
     },
