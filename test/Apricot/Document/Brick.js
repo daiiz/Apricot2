@@ -21,5 +21,10 @@ describe('Apricot.Document.View', function () {
         it('Brickを読み込むことができる', function () {
             assert.equal(brick1.name, 'Brick');
         });
+
+        it('Brickのデフォルト位置は(0, 0)である', function () {
+            assert.equal(brick1.recipe.design.top, 0);
+            assert.equal(brick1.recipe.design.left, 0);
+        });
     });
 });

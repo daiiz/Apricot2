@@ -24,7 +24,7 @@ z2.addRecipe('design', {
 var b = new Apricot.Document.Brick({id: 'brick1'});
 
 // 生成したAMMはAZMに追加しないと表示されない
-// z.addBrick([b]);
+z1.addBrick([b]);
 
 // Document Object Model （DOM）を取得する
 var v = new Apricot.Document.View({id: 'view1'});
