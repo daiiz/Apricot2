@@ -1777,6 +1777,7 @@ var makeDom = function () {
         bricks.forEach(function (brick) {
             // brick --> DOM
             // zumenElemの中に挿入する
+            console.log('>> ', brick.id);
             var brick = walkBrick(brick, brick);
             if (brick !== undefined) {
                 zumenElem.appendChild(brick);
@@ -1794,7 +1795,7 @@ var makeDom = function () {
 // 長男次弟表現で表されている木を探索する
 var walkBrick = function (brick, root) {
     console.info('>> @walkBrick');
-    var firstChild = brick.bricks[0];
+    var firstChild = brick.bricks[0];   // b0
 
     // 階層ごとに読まれる
     if(brick.bricks.length > 0) {
