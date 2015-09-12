@@ -26,5 +26,10 @@ describe('Apricot.Document.View', function () {
             assert.equal(brick1.recipe.design.top, 0);
             assert.equal(brick1.recipe.design.left, 0);
         });
+
+        it('brickを追加できる', function () {
+            brick1.addBrick([{}]);
+            assert.equal(brick1.bricks.length, 1);
+        });
     });
 });

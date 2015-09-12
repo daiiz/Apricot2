@@ -26,6 +26,15 @@ Brick.prototype = {
         self.initRecipe();
     },
 
+    // TODO: Zumenと共通化
+    addBrick: function (bricks) {
+        var self = this;
+
+        for(var i = 0; i < bricks.length; i++) {
+            self.bricks.push(bricks[i]);
+        }
+    },
+
     // レシピを初期化する
     initRecipe: require('./initRecipe')
 };
