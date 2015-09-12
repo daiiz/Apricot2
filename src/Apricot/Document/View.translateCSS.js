@@ -34,4 +34,20 @@ var translateCSS = function (attr, val) {
     return [attr, val];
 };
 
+var getRandomRGB = function() {
+    var r = Math.floor(Math.random() * 255).toString(16) + '';
+    if (r.length === 1) {
+        r = '0' + r;
+    }
+    var g = Math.floor(Math.random() * 255).toString(16);
+    if (g.length === 1) {
+        g = '0' + g;
+    }
+    var b = Math.floor(Math.random() * 255).toString(16);
+    if (r.length === 1) {
+        b = '0' + b;
+    }
+    return "#" + r + g + b;
+};
+
 module.exports = translateCSS;
