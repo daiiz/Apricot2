@@ -1777,10 +1777,10 @@ var makeDom = function () {
         bricks.forEach(function (brick) {
             // brick --> DOM
             // zumenElemの中に挿入する
-            console.log('>> ', brick.id);
-            var brick = walkBrick(brick, brick);
-            if (brick !== undefined) {
-                zumenElem.appendChild(brick);
+            brick.traceBricksId = [brick.id];
+            var brickDom = walkBrick(brick, brick);
+            if (brickDom !== undefined) {
+                zumenElem.appendChild(brickDom);
             }
         });
 
@@ -1794,7 +1794,6 @@ var makeDom = function () {
 // 引数は長男(b0)
 // 長男次弟表現で表されている木を探索する
 var walkBrick = function (brick, root) {
-    console.info('>> @walkBrick');
     var firstChild = brick.bricks[0];   // b0
 
     // 階層ごとに読まれる
@@ -1803,7 +1802,7 @@ var walkBrick = function (brick, root) {
 
         children.forEach(function (child) {
             // 兄弟を読む
-            console.log('>> ', child.id);
+            root.traceBricksId.push(child.id);
         });
         walkBrick(firstChild, root);
     }

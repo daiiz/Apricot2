@@ -93,5 +93,10 @@ describe('Apricot.Document.View', function () {
             var elem = view1.zumenDom[0];
             assert.equal(elem.style.FooBar, 'foobar');
         });
+
+        it('ブリック木を正しくトレースできている', function () {
+            assert.equal(brick0.traceBricksId.length, 13);
+            assert.equal(brick0.traceBricksId.toString(), 'brick0,brick1,brick2,brick3,brick4,brick5,brick6,brick10,brick11,brick7,brick8,brick9,brick12');
+        });
     });
 });
