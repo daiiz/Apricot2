@@ -36,7 +36,7 @@ Brick.prototype = {
     },
 
     // レシピを初期化する
-    initRecipe: require('./initRecipe')
+    initRecipe: require('./Brick.initRecipe')
 };
 
 module.exports = Brick;

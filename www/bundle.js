@@ -1620,6 +1620,35 @@ Base.prototype = {
 module.exports = Base;
 
 },{}],3:[function(require,module,exports){
+// self.recipe のメンバを初期化する
+var initRecipe = function () {
+    var self = this;
+
+    // デフォルトのdesign CSSを指定
+    self.recipe.design = {
+        position: 'relative',
+        display : 'none'
+    };
+
+    // 位置を(0px, 0px)に指定
+    self.recipe.design.top = 0;
+    self.recipe.design.left = 0;
+
+    // デフォルトのpropertyを指定
+    self.recipe.prop = {
+        id: self.id,
+        class: self.name
+    };
+
+    // デフォルトのdatasetを指定
+    self.recipe.data = {
+        'unique-id': self.uniqueId
+    }
+};
+
+module.exports = initRecipe;
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var Brick = function (option) {
@@ -1658,12 +1687,12 @@ Brick.prototype = {
     },
 
     // レシピを初期化する
-    initRecipe: require('./initRecipe')
+    initRecipe: require('./Brick.initRecipe')
 };
 
 module.exports = Brick;
 
-},{"./initRecipe":10}],4:[function(require,module,exports){
+},{"./Brick.initRecipe":3}],5:[function(require,module,exports){
 'use strict';
 
 var View = function (option) {
@@ -1716,7 +1745,7 @@ View.prototype = {
 
 module.exports = View;
 
-},{"./View.makeDom":5}],5:[function(require,module,exports){
+},{"./View.makeDom":6}],6:[function(require,module,exports){
 // 図面配列が更新されたときに実行されて、self.domを更新する
 var makeDom = function () {
     var self = this;
@@ -1842,7 +1871,36 @@ var getRandomRGB = function() {
 
 module.exports = makeDom;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
+// self.recipe のメンバを初期化する
+var initRecipe = function () {
+    var self = this;
+
+    // デフォルトのdesign CSSを指定
+    self.recipe.design = {
+        position: 'absolute',
+        display : 'none'
+    };
+
+    // 位置を(0px, 0px)に指定
+    self.recipe.design.top = 0;
+    self.recipe.design.left = 0;
+
+    // デフォルトのpropertyを指定
+    self.recipe.prop = {
+        id: self.id,
+        class: self.name
+    };
+
+    // デフォルトのdatasetを指定
+    self.recipe.data = {
+        'unique-id': self.uniqueId
+    }
+};
+
+module.exports = initRecipe;
+
+},{}],8:[function(require,module,exports){
 'use strict';
 
 // 表示されているかどうか
@@ -1852,7 +1910,7 @@ var isVisible = function () {
 
 module.exports = isVisible;
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 var Zumen = function (option) {
@@ -1913,7 +1971,7 @@ Zumen.prototype = {
     },
 
     // レシピを初期化する
-    initRecipe: require('./initRecipe'),
+    initRecipe: require('./Zumen.initRecipe'),
 
     isVisible: require('./Zumen.isVisible'),
     css      : require('./css')
@@ -1921,7 +1979,7 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.isVisible":6,"./Zumen.publicAPI":8,"./css":9,"./initRecipe":10}],8:[function(require,module,exports){
+},{"./Zumen.initRecipe":7,"./Zumen.isVisible":8,"./Zumen.publicAPI":10,"./css":11}],10:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -1943,38 +2001,9 @@ var publicAPI = function (apiVersion) {
 
 module.exports = publicAPI;
 
-},{}],9:[function(require,module,exports){
-
-},{}],10:[function(require,module,exports){
-// self.recipe のメンバを初期化する
-var initRecipe = function () {
-    var self = this;
-
-    // デフォルトのdesign CSSを指定
-    self.recipe.design = {
-        position: 'absolute',
-        display : 'none'
-    };
-
-    // 位置を(0px, 0px)に指定
-    self.recipe.design.top = 0;
-    self.recipe.design.left = 0;
-
-    // デフォルトのpropertyを指定
-    self.recipe.prop = {
-        id: self.id,
-        class: self.name
-    };
-
-    // デフォルトのdatasetを指定
-    self.recipe.data = {
-        'unique-id': self.uniqueId
-    }
-};
-
-module.exports = initRecipe;
-
 },{}],11:[function(require,module,exports){
+
+},{}],12:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -2001,4 +2030,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Brick":3,"./Apricot/Document/View":4,"./Apricot/Document/Zumen":7,"underscore":1}]},{},[11]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":9,"underscore":1}]},{},[12]);

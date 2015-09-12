@@ -58,7 +58,7 @@ Zumen.prototype = {
     },
 
     // レシピを初期化する
-    initRecipe: require('./initRecipe'),
+    initRecipe: require('./Zumen.initRecipe'),
 
     isVisible: require('./Zumen.isVisible'),
     css      : require('./css')
