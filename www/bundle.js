@@ -1677,14 +1677,12 @@ Brick.prototype = {
         self.initRecipe();
     },
 
-    // TODO: Zumenと共通化
-    addBrick: function (bricks) {
-        var self = this;
-
-        for(var i = 0; i < bricks.length; i++) {
-            self.bricks.push(bricks[i]);
-        }
-    },
+    // ブリックにブリックを追加する
+    addBrick: require('./addBrick'),
+    // 図面のレシピに情報を追加する
+    addRecipe: require('./addRecipe'),
+    // ブリックのレシピを上書きする
+    setRecipe: require('./setRecipe'),
 
     // レシピを初期化する
     initRecipe: require('./Brick.initRecipe')
@@ -1692,7 +1690,7 @@ Brick.prototype = {
 
 module.exports = Brick;
 
-},{"./Brick.initRecipe":3}],5:[function(require,module,exports){
+},{"./Brick.initRecipe":3,"./addBrick":12,"./addRecipe":13,"./setRecipe":15}],5:[function(require,module,exports){
 'use strict';
 
 var View = function (option) {
@@ -1948,35 +1946,12 @@ Zumen.prototype = {
         self.api = require('./Zumen.publicAPI');
     },
 
-    addBrick: function (bricks) {
-        var self = this;
-
-        for(var i = 0; i < bricks.length; i++) {
-            self.bricks.push(bricks[i]);
-        }
-    },
-
-    addRecipe: function (recipeKey, newRecipe) {
-        var self = this;
-
-        var attrs = Object.keys(newRecipe);
-        var recipe = self.recipe[recipeKey];
-        attrs.forEach(function (attr) {
-            recipe[attr] = newRecipe[attr];
-        });
-        return true;
-    },
-
-    setRecipe: function (recipeKey, newRecipe) {
-        var self = this;
-
-        if (recipeKey !== undefined) {
-            var recipe = self.recipe[recipeKey];
-            recipe = newRecipe;
-            return true;
-        }
-        return false;
-    },
+    // 図面にブリックを追加する
+    addBrick: require('./addBrick'),
+    // 図面のレシピに情報を追加する
+    addRecipe: require('./addRecipe'),
+    // 図面のレシピを上書きする
+    setRecipe: require('./setRecipe'),
 
     // レシピを初期化する
     initRecipe: require('./Zumen.initRecipe'),
@@ -1987,7 +1962,7 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.initRecipe":8,"./Zumen.isVisible":9,"./Zumen.publicAPI":11,"./css":12}],11:[function(require,module,exports){
+},{"./Zumen.initRecipe":8,"./Zumen.isVisible":9,"./Zumen.publicAPI":11,"./addBrick":12,"./addRecipe":13,"./css":14,"./setRecipe":15}],11:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -2010,8 +1985,53 @@ var publicAPI = function (apiVersion) {
 module.exports = publicAPI;
 
 },{}],12:[function(require,module,exports){
+'use strict';
+
+var addBrick = function (bricks) {
+    var self = this;
+
+    for(var i = 0; i < bricks.length; i++) {
+        self.bricks.push(bricks[i]);
+    }
+};
+
+module.exports = addBrick;
 
 },{}],13:[function(require,module,exports){
+'use strict';
+
+var addRecipe = function (recipeKey, newRecipe) {
+    var self = this;
+
+    var attrs = Object.keys(newRecipe);
+    var recipe = self.recipe[recipeKey];
+    attrs.forEach(function (attr) {
+        recipe[attr] = newRecipe[attr];
+    });
+    return true;
+};
+
+module.exports = addRecipe;
+
+},{}],14:[function(require,module,exports){
+
+},{}],15:[function(require,module,exports){
+'use strict';
+
+var setRecipe = function (recipeKey, newRecipe) {
+    var self = this;
+
+    if (recipeKey !== undefined) {
+        var recipe = self.recipe[recipeKey];
+        recipe = newRecipe;
+        return true;
+    }
+    return false;
+};
+
+module.exports = setRecipe;
+
+},{}],16:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -2038,4 +2058,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}]},{},[13]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}]},{},[16]);

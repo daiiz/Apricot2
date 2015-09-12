@@ -26,14 +26,12 @@ Brick.prototype = {
         self.initRecipe();
     },
 
-    // TODO: Zumenと共通化
-    addBrick: function (bricks) {
-        var self = this;
-
-        for(var i = 0; i < bricks.length; i++) {
-            self.bricks.push(bricks[i]);
-        }
-    },
+    // ブリックにブリックを追加する
+    addBrick: require('./addBrick'),
+    // 図面のレシピに情報を追加する
+    addRecipe: require('./addRecipe'),
+    // ブリックのレシピを上書きする
+    setRecipe: require('./setRecipe'),
 
     // レシピを初期化する
     initRecipe: require('./Brick.initRecipe')

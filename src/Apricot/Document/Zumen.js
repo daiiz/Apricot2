@@ -27,35 +27,12 @@ Zumen.prototype = {
         self.api = require('./Zumen.publicAPI');
     },
 
-    addBrick: function (bricks) {
-        var self = this;
-
-        for(var i = 0; i < bricks.length; i++) {
-            self.bricks.push(bricks[i]);
-        }
-    },
-
-    addRecipe: function (recipeKey, newRecipe) {
-        var self = this;
-
-        var attrs = Object.keys(newRecipe);
-        var recipe = self.recipe[recipeKey];
-        attrs.forEach(function (attr) {
-            recipe[attr] = newRecipe[attr];
-        });
-        return true;
-    },
-
-    setRecipe: function (recipeKey, newRecipe) {
-        var self = this;
-
-        if (recipeKey !== undefined) {
-            var recipe = self.recipe[recipeKey];
-            recipe = newRecipe;
-            return true;
-        }
-        return false;
-    },
+    // 図面にブリックを追加する
+    addBrick: require('./addBrick'),
+    // 図面のレシピに情報を追加する
+    addRecipe: require('./addRecipe'),
+    // 図面のレシピを上書きする
+    setRecipe: require('./setRecipe'),
 
     // レシピを初期化する
     initRecipe: require('./Zumen.initRecipe'),
