@@ -1769,7 +1769,7 @@ var makeDom = function () {
         // HTMLを生成する
         var zumenElem = createHtml(doc, role, prop, data);
         // スタイルを適用する
-        zumenElem = createStyle(zumenElem, design);
+        zumenElem = applyStyle(zumenElem, design);
 
         // 図面のなかを解析する
         var bricks = zumen.bricks;
@@ -1783,6 +1783,7 @@ var makeDom = function () {
             var design = recipe.design || {};
             var data   = recipe.data || {};
             var rootBrickDom = createHtml(doc, role, prop, data);
+            rootBrickDom = applyStyle(rootBrickDom, design);
 
             // ブリック木を探索してbrick.bricksDomにDOMを格納する
             // bricksDomは、ブリック木に含まれるブリックを平らに集めた配列
@@ -1806,7 +1807,7 @@ var makeDom = function () {
     self.dom = {};
 };
 
-// data.parentbrickを調べて入れ子にしてゆき、ひとつの要素を仕上げる
+// 親idを調べて入れ子にしてゆき、ひとつの要素を仕上げる
 var createBrickDom = function (bricksDom, rootBrickDom) {
     var rootBrickId = rootBrickDom.id;
 
@@ -1845,7 +1846,6 @@ var createBrickDom = function (bricksDom, rootBrickDom) {
 // 長男次弟表現で表されている木を探索する
 var walkBrick = function (brick, root, doc) {
     // TODO: docを渡さない方法はないか
-
     var firstChild = brick.bricks[0];   // b0
 
     // 階層ごとに読まれる
@@ -1861,6 +1861,7 @@ var walkBrick = function (brick, root, doc) {
             var data   = recipe.data || {};
             // HTMLを生成する
             var brickElem = createHtml(doc, role, prop, data);
+            brickElem = applyStyle(brickElem, design);
             root.bricksDom.push([brickElem, child.parentBrick]);
 
             root.traceBricksId.push(child.id);
@@ -1898,7 +1899,7 @@ var createHtml = function (doc, role, prop, data) {
 };
 
 // DOM要素を、スタイルを当てて返す
-var createStyle = function (elem, design) {
+var applyStyle = function (elem, design) {
     var attrs = Object.keys(design);
     attrs.forEach(function (attr) {
         // 頭文字が小文字のときはそのままCSS
