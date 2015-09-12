@@ -1782,6 +1782,7 @@ var makeDom = function () {
     self.dom = {};
 };
 
+// 図面を表すDOMを生成する
 var createZumenHtml = function (doc, role, prop, data) {
     var elem = doc.createElement(role);
     // 要素に属性を設定
@@ -1801,6 +1802,7 @@ var createZumenHtml = function (doc, role, prop, data) {
     return elem;
 };
 
+// 図面を表すDOM要素を、スタイルを当てて返す
 var createZumenStyle = function (elem, design) {
     var attrs = Object.keys(design);
     attrs.forEach(function (attr) {
@@ -1817,6 +1819,7 @@ var createZumenStyle = function (elem, design) {
     return elem;
 };
 
+// Apricot独自記法のCSSを、標準CSSに翻訳する
 var createCSS = function (attr, val) {
     // 横幅の大きさを返す
     if (attr === 'Width') {
