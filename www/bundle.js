@@ -1665,6 +1665,10 @@ Brick.prototype = {
 
         // ブリックに含まれるブリック
         self.bricks = [];
+        // 最も近い親の図面id
+        self.parentZumen = undefined;
+        // 最も近い親のブリックid
+        self.parentBrick = undefined;
 
         // ブリックのレシピ
         // 描画に必要な情報はすべてここに含める
@@ -1991,7 +1995,13 @@ var addBrick = function (bricks) {
     var self = this;
 
     for(var i = 0; i < bricks.length; i++) {
-        self.bricks.push(bricks[i]);
+        var brick = bricks[i];
+        if (self.name === 'Brick') {
+            brick.parentBrick = self.id;
+        }else if (self.name === 'Zumen') {
+            brick.parentZumen = self.id;
+        }
+        self.bricks.push(brick);
     }
 };
 

@@ -14,6 +14,10 @@ Brick.prototype = {
 
         // ブリックに含まれるブリック
         self.bricks = [];
+        // 最も近い親の図面id
+        self.parentZumen = undefined;
+        // 最も近い親のブリックid
+        self.parentBrick = undefined;
 
         // ブリックのレシピ
         // 描画に必要な情報はすべてここに含める

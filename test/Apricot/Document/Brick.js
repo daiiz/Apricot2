@@ -10,16 +10,18 @@ var Zumen = require('../../../src/Apricot/Document/Zumen');
 
 describe('Apricot.Document.View', function () {
     var zumen1;
-    var brick1;
+    var brick1, brick2;
 
     before(function () {
         zumen1 = new Zumen({id: 'zumen1'});
-        brick1  = new View({id: 'brick1', document: testDocument});
+        brick1 = new View({id: 'brick1', document: testDocument});
+        brick2 = new View({id: 'brick2', document: testDocument});
     });
 
     describe('Brick', function () {
         it('Brickを読み込むことができる', function () {
             assert.equal(brick1.name, 'Brick');
+            assert.equal(brick2.name, 'Brick');
         });
 
         it('Brickのデフォルト位置は(0, 0)である', function () {
@@ -27,9 +29,22 @@ describe('Apricot.Document.View', function () {
             assert.equal(brick1.recipe.design.left, 0);
         });
 
-        it('brickを追加できる', function () {
-            brick1.addBrick([{}]);
+        it('brick2を、brick1内に追加できる', function () {
+            assert.equal(brick2.parentBrick, undefined);
+            brick1.addBrick([brick2]);
             assert.equal(brick1.bricks.length, 1);
         });
+
+        it('brick2の親はbrick1である', function () {
+            assert.equal(brick2.parentBrick, 'brick1');
+            assert.equal(brick2.parentZumen, undefined);
+        });
+
+        it('brick1をzumen1に追加できる', function () {
+            assert.equal(zumen1.bricks.length, 0);
+            zumen1.addBrick([brick1]);
+            assert.equal(zumen1.bricks.length, 1);
+        });
+        //it('brick1とbrick')
     });
 });
