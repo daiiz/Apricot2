@@ -7,9 +7,8 @@ var addBrick = function (bricks) {
         var brick = bricks[i];
         if (self.name === 'Brick') {
             brick.parentBrick = self.id;
-        }else if (self.name === 'Zumen') {
-            brick.parentZumen = self.id;
         }
+
         self.bricks.push(brick);
     }
 };

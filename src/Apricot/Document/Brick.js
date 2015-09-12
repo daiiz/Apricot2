@@ -14,8 +14,6 @@ Brick.prototype = {
 
         // ブリックに含まれるブリック
         self.bricks = [];
-        // 最も近い親の図面id
-        self.parentZumen = undefined;
         // 最も近い親のブリックid
         self.parentBrick = undefined;
 
@@ -36,6 +34,9 @@ Brick.prototype = {
     addRecipe: require('./addRecipe'),
     // ブリックのレシピを上書きする
     setRecipe: require('./setRecipe'),
+
+    getParentZumen: function () {
+    },
 
     // レシピを初期化する
     initRecipe: require('./Brick.initRecipe')

@@ -37,7 +37,6 @@ describe('Apricot.Document.View', function () {
 
         it('brick2の親はbrick1である', function () {
             assert.equal(brick2.parentBrick, 'brick1');
-            assert.equal(brick2.parentZumen, undefined);
         });
 
         it('brick1をzumen1に追加できる', function () {
@@ -45,6 +44,11 @@ describe('Apricot.Document.View', function () {
             zumen1.addBrick([brick1]);
             assert.equal(zumen1.bricks.length, 1);
         });
-        //it('brick1とbrick')
+        /*
+        it('brick1とbrick2は、zumen1に属している', function () {
+            assert.equal(brick1.getParentZumen(), 'zumen1');
+            assert.equal(brick2.getParentZumen(), 'zumen1');
+        });
+        */
     });
 });
