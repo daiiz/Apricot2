@@ -24,15 +24,24 @@ z2.addRecipe('design', {
 var b1 = new Apricot.Document.Brick({id: 'brick1'});
 var b2 = new Apricot.Document.Brick({id: 'brick2'});
 b1.addRecipe('design', {
-    Width     : 50,
+    Width     : 150,
     Height    : 50,
-    BrickColor: '#ccc'
+    top       : 5,
+    left      : 5,
+    BrickColor: '#ccc',
+    display   : 'block'
 });
 
+b2.recipe.role = 'input';
+b2.addRecipe('design', {
+    top       : 5,
+    left      : 5,
+    display   : 'block'
+});
 
 // 生成したAMMはAZMに追加しないと表示されない
 b1.addBrick([b2]);
-z1.addBrick([b1]);
+z2.addBrick([b1]);
 
 // Document Object Model （DOM）を取得する
 var v = new Apricot.Document.View({id: 'view1'});
@@ -44,6 +53,5 @@ v.makeDom();
 // TODO: APIを用意する
 v.zumenDom.forEach(function (zumen) {
     document.body.appendChild(zumen);
-    console.info(zumen);
 });
 v.zumenDom[0].style.display = 'block';
