@@ -1777,12 +1777,43 @@ var makeDom = function () {
         bricks.forEach(function (brick) {
             // brick --> DOM
             // zumenElemの中に挿入する
+            var brick = walkBrick(brick, brick);
+            if (brick !== undefined) {
+                zumenElem.appendChild(brick);
+            }
         });
 
         self.zumenDom.push(zumenElem);
     });
 
     self.dom = {};
+};
+
+// Brickに内包されるBrickを探索しながら、BrickのDOMを完成させる
+// 引数は長男(b0)
+// 長男次弟表現で表されている木を探索する
+var walkBrick = function (brick, root) {
+    console.info('>> @walkBrick');
+    var firstChild = brick.bricks[0];
+
+    // 階層ごとに読まれる
+    if(brick.bricks.length > 0) {
+        var children = brick.bricks;    // [b0, b, ..., b]
+
+        children.forEach(function (child) {
+            // 兄弟を読む
+            console.log('>> ', child.id);
+        });
+        walkBrick(firstChild, root);
+    }
+
+    // rootの兄弟をひとつ進める
+    root.bricks.shift();
+    if (root.bricks.length > 0) {
+        walkBrick(root.bricks[0], root);
+    }
+
+    return undefined;
 };
 
 // DOMを生成する
