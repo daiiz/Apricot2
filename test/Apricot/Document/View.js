@@ -98,5 +98,19 @@ describe('Apricot.Document.View', function () {
             assert.equal(brick0.traceBricksId.length, 13);
             assert.equal(brick0.traceBricksId.toString(), 'brick0,brick1,brick2,brick3,brick4,brick5,brick6,brick10,brick11,brick7,brick8,brick9,brick12');
         });
+
+        it('brickDomが正しく生成されている', function () {
+            assert.equal(brick0.bricks.length, 3);                      // brick-1, 2, 3
+            assert.equal(brick0.bricks[0].bricks.length, 3);            // brick-4, 5, 6
+            assert.equal(brick0.bricks[0].bricks[0].bricks.length, 2);  // brick-10, 11
+            assert.equal(brick0.bricks[1].bricks.length, 2);            // brick-7, 8
+            assert.equal(brick0.bricks[1].bricks[0].bricks.length, 0);
+            assert.equal(brick0.bricks[2].bricks.length, 1);            // brick-9
+            assert.equal(brick0.bricks[2].bricks[0].bricks.length, 1);  // brick-12
+
+            assert.equal(view1.zumenDom.length, 1);
+            assert.equal(view1.zumenDom.length === view1.zumens.length, true);
+            assert.equal(view1.zumenDom[0].id === view1.zumens[0].id, true);
+        });
     });
 });
