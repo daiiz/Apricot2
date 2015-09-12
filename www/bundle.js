@@ -1820,7 +1820,28 @@ var createZumenStyle = function (elem, design) {
 };
 
 // Apricot独自記法のCSSを、標準CSSに翻訳する
-var createCSS = function (attr, val) {
+var createCSS = require('./View.translateCSS');
+
+var getRandomRGB = function() {
+    var r = Math.floor(Math.random() * 255).toString(16) + '';
+    if (r.length === 1) {
+        r = '0' + r;
+    }
+    var g = Math.floor(Math.random() * 255).toString(16);
+    if (g.length === 1) {
+        g = '0' + g;
+    }
+    var b = Math.floor(Math.random() * 255).toString(16);
+    if (r.length === 1) {
+        b = '0' + b;
+    }
+    return "#" + r + g + b;
+}
+
+module.exports = makeDom;
+
+},{"./View.translateCSS":7}],7:[function(require,module,exports){
+var translateCSS = function (attr, val) {
     // 横幅の大きさを返す
     if (attr === 'Width') {
         if (val === 'full') {
@@ -1856,25 +1877,9 @@ var createCSS = function (attr, val) {
     return [attr, val];
 };
 
-var getRandomRGB = function() {
-    var r = Math.floor(Math.random() * 255).toString(16) + '';
-    if (r.length === 1) {
-        r = '0' + r;
-    }
-    var g = Math.floor(Math.random() * 255).toString(16);
-    if (g.length === 1) {
-        g = '0' + g;
-    }
-    var b = Math.floor(Math.random() * 255).toString(16);
-    if (r.length === 1) {
-        b = '0' + b;
-    }
-    return "#" + r + g + b;
-}
+module.exports = translateCSS;
 
-module.exports = makeDom;
-
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // self.recipe のメンバを初期化する
 var initRecipe = function () {
     var self = this;
@@ -1903,7 +1908,7 @@ var initRecipe = function () {
 
 module.exports = initRecipe;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 // 表示されているかどうか
@@ -1913,7 +1918,7 @@ var isVisible = function () {
 
 module.exports = isVisible;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 var Zumen = function (option) {
@@ -1982,7 +1987,7 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.initRecipe":7,"./Zumen.isVisible":8,"./Zumen.publicAPI":10,"./css":11}],10:[function(require,module,exports){
+},{"./Zumen.initRecipe":8,"./Zumen.isVisible":9,"./Zumen.publicAPI":11,"./css":12}],11:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -2004,9 +2009,9 @@ var publicAPI = function (apiVersion) {
 
 module.exports = publicAPI;
 
-},{}],11:[function(require,module,exports){
-
 },{}],12:[function(require,module,exports){
+
+},{}],13:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -2033,4 +2038,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":9,"underscore":1}]},{},[12]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}]},{},[13]);
