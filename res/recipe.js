@@ -23,6 +23,12 @@ z2.addRecipe('design', {
 // これで生成されるものはAZM.bricksの要素と同じデータ構造をもつ
 var b1 = new Apricot.Document.Brick({id: 'brick1'});
 var b2 = new Apricot.Document.Brick({id: 'brick2'});
+b1.addRecipe('design', {
+    Width     : 50,
+    Height    : 50,
+    BrickColor: '#ccc'
+});
+
 
 // 生成したAMMはAZMに追加しないと表示されない
 b1.addBrick([b2]);

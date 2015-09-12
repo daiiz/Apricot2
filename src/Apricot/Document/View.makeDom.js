@@ -17,9 +17,9 @@ var makeDom = function () {
         var data   = recipe.data || {};
 
         // HTMLを生成する
-        var zumenElem = createZumenHtml(doc, role, prop, data);
+        var zumenElem = createHtml(doc, role, prop, data);
         // スタイルを適用する
-        zumenElem = createZumenStyle(zumenElem, design);
+        zumenElem = createStyle(zumenElem, design);
 
         // 図面のなかを解析する
         var bricks = zumen.bricks;
@@ -34,8 +34,8 @@ var makeDom = function () {
     self.dom = {};
 };
 
-// 図面を表すDOMを生成する
-var createZumenHtml = function (doc, role, prop, data) {
+// DOMを生成する
+var createHtml = function (doc, role, prop, data) {
     var elem = doc.createElement(role);
     // 要素に属性を設定
     var attrs = Object.keys(prop);
@@ -54,8 +54,8 @@ var createZumenHtml = function (doc, role, prop, data) {
     return elem;
 };
 
-// 図面を表すDOM要素を、スタイルを当てて返す
-var createZumenStyle = function (elem, design) {
+// DOM要素を、スタイルを当てて返す
+var createStyle = function (elem, design) {
     var attrs = Object.keys(design);
     attrs.forEach(function (attr) {
         // 頭文字が小文字のときはそのままCSS
