@@ -1,4 +1,7 @@
 'use strict';
+var jsdom = require('jsdom');
+var testDocument = jsdom.jsdom('<html><body></body></html>');
+var window = window || undefined;
 
 var View = function (option) {
     // 独自のdocument空間が必要な場合の対応
@@ -6,7 +9,10 @@ var View = function (option) {
     if (option !== undefined && option.document) {
         this.document = option.document;
     }else {
-        this.document = window.document;
+        if (window !== undefined) {
+            this.document = window.document;
+        }
+        this.document = testDocument;
     }
     this.init(option || {});
 };
