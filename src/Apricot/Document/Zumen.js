@@ -14,7 +14,9 @@ Zumen.prototype = {
         // 図面に含まれるモジュール
         self.bricks = [];
         // 図面ファイルの名前
-        self.zumenFileName = zumenFile;
+        if (zumenFile !== undefined) {
+            self.zumenFileName = zumenFile;
+        }
 
         // 図面のレシピ
         // 描画に必要な情報はすべてここに含める
@@ -28,14 +30,18 @@ Zumen.prototype = {
 
         if (zumenFile !== undefined) {
             // self.zumenParts, self.zumenColors を完成させる
-            self.loadZumenFile(zumenFile);
+            self.loadZumenFile(self.zumenFileName);
+            // self.bricks を完成させる
+            self.buildBricks(self.zumenFileName);
         }
 
         self.api = require('./Zumen.publicAPI');
     },
 
-    // 図面ファイルを読み込み、bricksを完成させる
+    // 図面ファイルを読み込み、zumenParts, zumenColors を完成させる
     loadZumenFile: require('./Zumen.loadZumenFile'),
+    // 図面ファイルから読み取った情報を基に、bricks を完成させる
+    buildBricks: require('./Zumen.buildBricks'),
 
     // 図面にブリックを追加する
     addBrick: require('./addBrick'),

@@ -1,12 +1,12 @@
 'use strict';
 
-var loadZumenFile = function (zumenFile) {
+var loadZumenFile = function () {
     var self = this;
 
     // 図面ファイル名を取得
     var zFileName = self.zumenFileName;
     // 図面データのJSONを読み込む
-    var zumenJSON   = require('../../../zumen/' + zumenFile);
+    var zumenJSON   = require('../../../zumen/' + zFileName);
 
     self.zumenColors = zumenJSON.colors;
     self.zumenParts = zumenJSON.parts;

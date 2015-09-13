@@ -95,5 +95,9 @@ describe('Apricot.Document.Zumen', function () {
             assert.equal(zumen3.zumenParts[6].parentPartIdx, 5);
             assert.equal(zumen3.zumenParts[7].parentPartIdx, 6);
         });
+
+        it('buildBricksを呼び出せる', function () {
+            assert.equal(zumen3.buildBricks(), true);
+        });
     });
 });
