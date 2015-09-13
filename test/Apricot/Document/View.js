@@ -112,5 +112,9 @@ describe('Apricot.Document.View', function () {
             assert.equal(view1.zumenDom.length === view1.zumens.length, true);
             assert.equal(view1.zumenDom[0].id === view1.zumens[0].id, true);
         });
+
+        it('generateHTMLを呼び出すことができる', function () {
+            assert.equal(view1.generateHTML('index.html'), 'index.html'); 
+        });
     });
 });
