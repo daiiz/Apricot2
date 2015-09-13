@@ -2,12 +2,14 @@ module.exports = function (grunt) {
     var pkg = grunt.file.readJSON('package.json');
 
     grunt.initConfig({
+        /*
         browserify : {
             dist : {
                 src : 'src/index.js',
                 dest : 'www/bundle.js'
             }
         },
+        */
         mochaTest: {
             test: {
                 src: ['test/**/*.js']
@@ -16,7 +18,7 @@ module.exports = function (grunt) {
         watch : {
             scripts : {
                 files : ['src/**/*.js', 'test/**/*.js'],
-                tasks : ['browserify', 'mochaTest']
+                tasks : ['mochaTest']
             }
         }
     });
