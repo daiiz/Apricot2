@@ -39,7 +39,6 @@ var makeDom = function () {
             var copy_bricks = brick.bricks.concat();
             brick.bricksDom = [];
             walkBrick(brick, brick, doc);
-            //console.log(brick.bricksDom.length);
             brick.bricks = copy_bricks;
 
             // brickDomを生成する
