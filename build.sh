@@ -15,4 +15,4 @@ python scanner/make_div.py scanner/tmp/$1.u > scanner/tmp/$1.div
 
 # Apricot 2.0
 #   Apricot Zumen Model をつくる
-python scanner/make_azm.py scanner/tmp/$1.u > zumen/$1.js
+python scanner/make_azm.py scanner/tmp/$1.az > zumen/$1.js
