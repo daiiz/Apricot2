@@ -2095,6 +2095,7 @@ var loadZumenFile = function () {
 
         self.zumenParts.forEach(function (partB) {
             var included = isIncludedIn(partA, partB);
+            //console.log('>>>> partA = %d, partB = %d, %s', partA.var, partB.var, included);
             if (included) {
                 // 小さい方を登録する
                 if (partA.parentPartIdx !== undefined) {
@@ -2104,8 +2105,7 @@ var loadZumenFile = function () {
                 }
             }
         });
-
-        console.log(partA);
+        //console.log(partA);
     }
 };
 
@@ -2139,7 +2139,16 @@ var getRightBottom = function (part) {
 
 // AはBに含まれるか（A is included in B）を判定する
 var isIncludedIn = function (partA, partB) {
-    return true;
+    // 左上の頂点のx座標の条件
+    var p = partA.lt[0] > partB.lt[0];
+    // 右上の頂点のx座標の条件
+    var q = partA.lt[0] + partA.width < partB.lt[0] + partB.width;
+    // 左上の頂点のy座標の条件
+    var r = partA.lt[1] > partB.lt[1];
+    // 左下の頂点のy座標の条件
+    var s = partA.lt[1] + partA.height < partB.lt[1] + partB.height;
+
+    return (p && q && r && s);
 };
 
 module.exports = loadZumenFile;
@@ -2246,7 +2255,7 @@ window.Apricot.App = _.extend((window.Apricot.App || {}), {
 });
 
 },{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}],18:[function(require,module,exports){
-var json = {"colors": {"v0": "rgba(255, 201, 14, 255)", "v1": "rgba(255, 127, 39, 255)", "v2": "rgba(185, 122, 87, 255)", "v3": "rgba(136, 3, 21, 255)", "v4": "rgba(255, 255, 255, 255)", "v5": "rgba(195, 195, 195, 255)"}, "parts": [{"var": "0", "width": 478, "top": 0, "height": 68, "left": 0}, {"var": "1", "width": 48, "top": 9, "height": 48, "left": 10}, {"var": "2", "width": 36, "top": 19, "height": 36, "left": 383}, {"var": "3", "width": 36, "top": 19, "height": 36, "left": 429}, {"var": "4", "width": 478, "top": 68, "height": 215, "left": 0}, {"var": "5", "width": 478, "top": 283, "height": 56, "left": 0}]}
+var json = {"colors": {"v0": "rgba(255, 201, 14, 255)", "v1": "rgba(255, 127, 39, 255)", "v2": "rgba(185, 122, 87, 255)", "v3": "rgba(136, 4, 21, 255)", "v4": "rgba(255, 255, 255, 255)", "v5": "rgba(195, 195, 195, 255)", "v6": "rgba(245, 3, 171, 255)", "v7": "rgba(3, 162, 232, 255)"}, "parts": [{"var": "0", "width": 478, "top": 0, "height": 68, "left": 0}, {"var": "1", "width": 48, "top": 9, "height": 48, "left": 10}, {"var": "2", "width": 36, "top": 19, "height": 36, "left": 383}, {"var": "3", "width": 36, "top": 19, "height": 36, "left": 429}, {"var": "4", "width": 478, "top": 68, "height": 215, "left": 0}, {"var": "5", "width": 478, "top": 283, "height": 56, "left": 0}, {"var": "6", "width": 36, "top": 293, "height": 36, "left": 421}, {"var": "7", "width": 24, "top": 299, "height": 24, "left": 427}]}
 module.exports = json;
 
 },{}]},{},[17]);

@@ -26,6 +26,7 @@ var loadZumenFile = function () {
 
         self.zumenParts.forEach(function (partB) {
             var included = isIncludedIn(partA, partB);
+            //console.log('>>>> partA = %d, partB = %d, %s', partA.var, partB.var, included);
             if (included) {
                 // 小さい方を登録する
                 if (partA.parentPartIdx !== undefined) {
@@ -35,8 +36,7 @@ var loadZumenFile = function () {
                 }
             }
         });
-
-        console.log(partA);
+        //console.log(partA);
     }
 };
 
@@ -70,7 +70,16 @@ var getRightBottom = function (part) {
 
 // AはBに含まれるか（A is included in B）を判定する
 var isIncludedIn = function (partA, partB) {
-    return true;
+    // 左上の頂点のx座標の条件
+    var p = partA.lt[0] > partB.lt[0];
+    // 右上の頂点のx座標の条件
+    var q = partA.lt[0] + partA.width < partB.lt[0] + partB.width;
+    // 左上の頂点のy座標の条件
+    var r = partA.lt[1] > partB.lt[1];
+    // 左下の頂点のy座標の条件
+    var s = partA.lt[1] + partA.height < partB.lt[1] + partB.height;
+
+    return (p && q && r && s);
 };
 
 module.exports = loadZumenFile;

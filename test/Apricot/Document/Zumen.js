@@ -64,7 +64,7 @@ describe('Apricot.Document.Zumen', function () {
 
         // ブリックになる前の、生の状態をパーツとよぶ
         it('図面に含まれるパーツ数は6である', function () {
-            assert.equal(zumen3.zumenParts.length, 6);
+            assert.equal(zumen3.zumenParts.length, 8);
         });
 
         it('すべてのパーツの左上頂点座標を正しく取得できる' ,function () {
@@ -83,6 +83,17 @@ describe('Apricot.Document.Zumen', function () {
             assert.deepEqual(zumen3.zumenParts[3].rb, [429+36, 19+36]);
             assert.deepEqual(zumen3.zumenParts[4].rb, [0+478, 68+215]);
             assert.deepEqual(zumen3.zumenParts[5].rb, [0+478, 283+56]);
+        });
+
+        it('パーツの包含関係を決定できる', function () {
+            assert.equal(zumen3.zumenParts[0].parentPartIdx, undefined);
+            assert.equal(zumen3.zumenParts[1].parentPartIdx, 0);
+            assert.equal(zumen3.zumenParts[2].parentPartIdx, 0);
+            assert.equal(zumen3.zumenParts[3].parentPartIdx, 0);
+            assert.equal(zumen3.zumenParts[4].parentPartIdx, undefined);
+            assert.equal(zumen3.zumenParts[5].parentPartIdx, undefined);
+            assert.equal(zumen3.zumenParts[6].parentPartIdx, 5);
+            assert.equal(zumen3.zumenParts[7].parentPartIdx, 6);
         });
     });
 });
