@@ -5,7 +5,7 @@ var initRecipe = function () {
     // デフォルトのdesign CSSを指定
     self.recipe.design = {
         position: 'relative',
-        display : 'none'
+        display : 'block'
     };
 
     // 位置を(0px, 0px)に指定
