@@ -25,8 +25,8 @@ describe('Apricot.Document.View', function () {
         });
 
         it('Brickのデフォルト位置は(0, 0)である', function () {
-            assert.equal(brick1.recipe.design.top, 0);
-            assert.equal(brick1.recipe.design.left, 0);
+            assert.equal(brick1.recipe.design.Top, 0);
+            assert.equal(brick1.recipe.design.Left, 0);
         });
 
         it('brick2を、brick1内に追加できる', function () {

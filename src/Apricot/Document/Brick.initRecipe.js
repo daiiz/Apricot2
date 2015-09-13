@@ -9,8 +9,8 @@ var initRecipe = function () {
     };
 
     // 位置を(0px, 0px)に指定
-    self.recipe.design.top = 0;
-    self.recipe.design.left = 0;
+    self.recipe.design.Top = 0;
+    self.recipe.design.Left = 0;
 
     // デフォルトのpropertyを指定
     self.recipe.prop = {

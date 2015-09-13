@@ -17,11 +17,12 @@ var buildBricks = function () {
         var brick = new Brick({id: brickId});
         // 設定事項
         brick.addRecipe('design', {
-            top   : part.top,
-            left  : part.left,
-            width : part.width,
-            height: part.height,
-            BrickColor: colors['v' + i]
+            Top       : +part.top,
+            Left      : +part.left,
+            Width     : +part.width,
+            Height    : +part.height,
+            BrickColor: colors['v' + i],
+            position  : 'fixed'
         });
         brick.addRecipe('data', {
             zumenFileName: zumenFile
