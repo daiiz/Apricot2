@@ -1,11 +1,11 @@
 'use strict';
 
-var Zumen = function (option) {
-    this.init(option || {});
+var Zumen = function (option, zumenFile) {
+    this.init(option || {}, zumenFile);
 };
 
 Zumen.prototype = {
-    init: function (option) {
+    init: function (option, zumenFile) {
         var self = this;
 
         self.name = 'Zumen';
@@ -13,6 +13,8 @@ Zumen.prototype = {
         self.id = option.id || self.uniqueId;
         // 図面に含まれるモジュール
         self.bricks = [];
+        // 図面ファイルの名前
+        self.zumenFileName = zumenFile;
 
         // 図面のレシピ
         // 描画に必要な情報はすべてここに含める
@@ -23,9 +25,13 @@ Zumen.prototype = {
             'data': {}
         };
         self.initRecipe();
+        self.loadZumenFile();
 
         self.api = require('./Zumen.publicAPI');
     },
+
+    // 図面ファイルを読み込み、bricksを完成させる
+    loadZumenFile: require('./Zumen.loadZumenFile'),
 
     // 図面にブリックを追加する
     addBrick: require('./addBrick'),

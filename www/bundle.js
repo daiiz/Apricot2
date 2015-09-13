@@ -1695,7 +1695,7 @@ Brick.prototype = {
 
 module.exports = Brick;
 
-},{"./Brick.initRecipe":3,"./addBrick":12,"./addRecipe":13,"./setRecipe":15}],5:[function(require,module,exports){
+},{"./Brick.initRecipe":3,"./addBrick":13,"./addRecipe":14,"./setRecipe":16}],5:[function(require,module,exports){
 'use strict';
 
 var View = function (option) {
@@ -2017,12 +2017,12 @@ module.exports = isVisible;
 },{}],10:[function(require,module,exports){
 'use strict';
 
-var Zumen = function (option) {
-    this.init(option || {});
+var Zumen = function (option, zumenFile) {
+    this.init(option || {}, zumenFile);
 };
 
 Zumen.prototype = {
-    init: function (option) {
+    init: function (option, zumenFile) {
         var self = this;
 
         self.name = 'Zumen';
@@ -2030,6 +2030,8 @@ Zumen.prototype = {
         self.id = option.id || self.uniqueId;
         // 図面に含まれるモジュール
         self.bricks = [];
+        // 図面ファイルの名前
+        self.zumenFileName = zumenFile;
 
         // 図面のレシピ
         // 描画に必要な情報はすべてここに含める
@@ -2040,9 +2042,13 @@ Zumen.prototype = {
             'data': {}
         };
         self.initRecipe();
+        self.loadZumenFile();
 
         self.api = require('./Zumen.publicAPI');
     },
+
+    // 図面ファイルを読み込み、bricksを完成させる
+    loadZumenFile: require('./Zumen.loadZumenFile'),
 
     // 図面にブリックを追加する
     addBrick: require('./addBrick'),
@@ -2060,7 +2066,85 @@ Zumen.prototype = {
 
 module.exports = Zumen;
 
-},{"./Zumen.initRecipe":8,"./Zumen.isVisible":9,"./Zumen.publicAPI":11,"./addBrick":12,"./addRecipe":13,"./css":14,"./setRecipe":15}],11:[function(require,module,exports){
+},{"./Zumen.initRecipe":8,"./Zumen.isVisible":9,"./Zumen.loadZumenFile":11,"./Zumen.publicAPI":12,"./addBrick":13,"./addRecipe":14,"./css":15,"./setRecipe":16}],11:[function(require,module,exports){
+'use strict';
+
+var loadZumenFile = function () {
+    var self = this;
+
+    // 図面ファイル名を取得
+    var zFileName = self.zumenFileName;
+    // 図面データのJSONを読み込む
+    var zumenJSON   = require('../../../zumen/simple');
+    self.zumenColors = zumenJSON.colors;
+    self.zumenParts = zumenJSON.parts;
+    self.parentPart = undefined;
+
+    // 座標解析
+    for (var i = 0; i < self.zumenParts.length; i++) {
+        var part = self.zumenParts[i];
+        part.lt = getLeftTop(part);
+        part.rb = getRightBottom(part);
+    }
+
+    // パーツが属する親パーツを決定する
+    // parentPartIdx: パーツ or undefined
+    // TODO: ループ回数見積もり
+    for (i = 0; i < self.zumenParts.length; i++) {
+        var partA = self.zumenParts[i]; // 着目するパーツ
+
+        self.zumenParts.forEach(function (partB) {
+            var included = isIncludedIn(partA, partB);
+            if (included) {
+                // 小さい方を登録する
+                if (partA.parentPartIdx !== undefined) {
+                    partA.parentPartIdx = +getSmaller(self.zumenParts[partA.parentPartIdx], partB).var;
+                }else {
+                    partA.parentPartIdx = +partB.var;
+                }
+            }
+        });
+
+        console.log(partA);
+    }
+};
+
+// 小さい方のパーツを返す
+var getSmaller = function (partA, partB) {
+    if (getPartSize(partA) < getPartSize(partB)) {
+        return partA;
+    }
+    return partB;
+}
+
+// パーツの大きさを取得
+var getPartSize = function (part) {
+    // とりあえずは面積
+    if (part === undefined) {
+        // 無限大
+        return 100000000000000;
+    }
+    return part.width * part.height;
+}
+
+// パーツの左上の座標を取得
+var getLeftTop = function (part) {
+    return [part.left, part.top];
+};
+
+// パーツの右下の座標を取得
+var getRightBottom = function (part) {
+    return [part.left + part.width, part.top + part.height];
+};
+
+// AはBに含まれるか（A is included in B）を判定する
+var isIncludedIn = function (partA, partB) {
+    return true;
+};
+
+module.exports = loadZumenFile;
+
+},{"../../../zumen/simple":18}],12:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -2082,7 +2166,7 @@ var publicAPI = function (apiVersion) {
 
 module.exports = publicAPI;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 var addBrick = function (bricks) {
@@ -2100,7 +2184,7 @@ var addBrick = function (bricks) {
 
 module.exports = addBrick;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 var addRecipe = function (recipeKey, newRecipe) {
@@ -2116,9 +2200,9 @@ var addRecipe = function (recipeKey, newRecipe) {
 
 module.exports = addRecipe;
 
-},{}],14:[function(require,module,exports){
-
 },{}],15:[function(require,module,exports){
+
+},{}],16:[function(require,module,exports){
 'use strict';
 
 var setRecipe = function (recipeKey, newRecipe) {
@@ -2134,7 +2218,7 @@ var setRecipe = function (recipeKey, newRecipe) {
 
 module.exports = setRecipe;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 var _ = require('underscore');
@@ -2161,4 +2245,8 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}]},{},[16]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}],18:[function(require,module,exports){
+var json = {"colors": {"v0": "rgba(255, 201, 14, 255)", "v1": "rgba(255, 127, 39, 255)", "v2": "rgba(185, 122, 87, 255)", "v3": "rgba(136, 3, 21, 255)", "v4": "rgba(255, 255, 255, 255)", "v5": "rgba(195, 195, 195, 255)"}, "parts": [{"var": "0", "width": 478, "top": 0, "height": 68, "left": 0}, {"var": "1", "width": 48, "top": 9, "height": 48, "left": 10}, {"var": "2", "width": 36, "top": 19, "height": 36, "left": 383}, {"var": "3", "width": 36, "top": 19, "height": 36, "left": 429}, {"var": "4", "width": 478, "top": 68, "height": 215, "left": 0}, {"var": "5", "width": 478, "top": 283, "height": 56, "left": 0}]}
+module.exports = json;
+
+},{}]},{},[17]);

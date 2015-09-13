@@ -50,4 +50,39 @@ describe('Apricot.Document.Zumen', function () {
             assert.equal(zumen1.api(1).isVisible(), false);
         });
     });
+
+    describe('Zumen Loader', function () {
+        var zumen3;
+
+        before(function () {
+            zumen3 = new Zumen({id: 'zumen3'}, 'simple');
+        });
+
+        it('図面ファイル名を保持できる', function () {
+            assert.equal(zumen3.zumenFileName, 'simple');
+        });
+
+        // ブリックになる前の、生の状態をパーツとよぶ
+        it('図面に含まれるパーツ数は6である', function () {
+            assert.equal(zumen3.zumenParts.length, 6);
+        });
+
+        it('すべてのパーツの左上頂点座標を正しく取得できる' ,function () {
+            assert.deepEqual(zumen3.zumenParts[0].lt, [0, 0]);
+            assert.deepEqual(zumen3.zumenParts[1].lt, [10, 9]);
+            assert.deepEqual(zumen3.zumenParts[2].lt, [383, 19]);
+            assert.deepEqual(zumen3.zumenParts[3].lt, [429, 19]);
+            assert.deepEqual(zumen3.zumenParts[4].lt, [0, 68]);
+            assert.deepEqual(zumen3.zumenParts[5].lt, [0, 283]);
+        });
+
+        it('すべてのパーツの右下頂点座標を正しく取得できる' ,function () {
+            assert.deepEqual(zumen3.zumenParts[0].rb, [0+478, 0+68]);
+            assert.deepEqual(zumen3.zumenParts[1].rb, [10+48, 9+48]);
+            assert.deepEqual(zumen3.zumenParts[2].rb, [383+36, 19+36]);
+            assert.deepEqual(zumen3.zumenParts[3].rb, [429+36, 19+36]);
+            assert.deepEqual(zumen3.zumenParts[4].rb, [0+478, 68+215]);
+            assert.deepEqual(zumen3.zumenParts[5].rb, [0+478, 283+56]);
+        });
+    });
 });
