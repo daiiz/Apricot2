@@ -39,6 +39,7 @@ var makeDom = function () {
             var copy_bricks = brick.bricks.concat();
             brick.bricksDom = [];
             walkBrick(brick, brick, doc);
+            //console.log(brick.bricksDom.length);
             brick.bricks = copy_bricks;
 
             // brickDomを生成する
@@ -63,16 +64,16 @@ var createBrickDom = function (bricksDom, rootBrickDom) {
     // bricksDom を先頭から１つずつ見てゆき、入れ子形を完成させる
     for (var i = 0; i < bricksDom.length; i++) {
         var brickInfo = bricksDom[i];
-        var brick = brickInfo[0];   // 挿入するbrick
+        var brick = brickInfo[0];   // 挿入されるbrick
         var parentBrickId = brickInfo[1];
         var insertId = brick.id;
 
         for (var j = 0; j < bricksDom.length; j++) {
-            var brickInfo = bricksDom[j];
-            var brickId = brickInfo[1]; // 親brickId
+            var brickInfo_j = bricksDom[j];
+            var brickId = brickInfo_j[1]; // 親brickId
             // 親id と 挿入要素id が一致したら挿入
             if (insertId === brickId) {
-                brickInfo[0].appendChild(brick);
+                brick.appendChild(brickInfo_j[0]);
             }
         }
     }
@@ -112,7 +113,6 @@ var walkBrick = function (brick, root, doc) {
             var brickElem = createHtml(doc, role, prop, data);
             brickElem = applyStyle(brickElem, design);
             root.bricksDom.push([brickElem, child.parentBrick]);
-
             root.traceBricksId.push(child.id);
         });
         walkBrick(firstChild, root, doc);
@@ -158,6 +158,10 @@ var applyStyle = function (elem, design) {
             var css = createCSS(attr, design[attr]);
             var attr = css[0];
             var val = css[1];
+            if (isNaN(val) === false) {
+                // 数値の場合
+                val = val + 'px';
+            }
             elem.style[attr] = val;
         }
     });
