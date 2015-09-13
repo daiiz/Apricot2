@@ -15,6 +15,16 @@ var translateCSS = function (attr, val) {
         return ['height', val];
     }
 
+    // top を返す
+    else if (attr === 'Top') {
+        return ['top', val];
+    }
+
+    // left を返す
+    else if (attr === 'Left') {
+        return ['left', val];
+    }
+
     // 背景色をランダムに返す
     else if (attr === 'BrickColor') {
         if (val === 'random') {
