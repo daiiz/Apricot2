@@ -2042,7 +2042,11 @@ Zumen.prototype = {
             'data': {}
         };
         self.initRecipe();
-        self.loadZumenFile();
+
+        if (zumenFile !== undefined) {
+            // self.zumenParts, self.zumenColors を完成させる
+            self.loadZumenFile(zumenFile);
+        }
 
         self.api = require('./Zumen.publicAPI');
     },
@@ -2069,13 +2073,14 @@ module.exports = Zumen;
 },{"./Zumen.initRecipe":8,"./Zumen.isVisible":9,"./Zumen.loadZumenFile":11,"./Zumen.publicAPI":12,"./addBrick":13,"./addRecipe":14,"./css":15,"./setRecipe":16}],11:[function(require,module,exports){
 'use strict';
 
-var loadZumenFile = function () {
+var loadZumenFile = function (zumenFile) {
     var self = this;
 
     // 図面ファイル名を取得
     var zFileName = self.zumenFileName;
     // 図面データのJSONを読み込む
-    var zumenJSON   = require('../../../zumen/simple');
+    var zumenJSON   = require('../../../zumen/' + zumenFile);
+
     self.zumenColors = zumenJSON.colors;
     self.zumenParts = zumenJSON.parts;
     self.parentPart = undefined;
@@ -2107,6 +2112,8 @@ var loadZumenFile = function () {
         });
         //console.log(partA);
     }
+
+    return true;
 };
 
 // 小さい方のパーツを返す
@@ -2153,7 +2160,7 @@ var isIncludedIn = function (partA, partB) {
 
 module.exports = loadZumenFile;
 
-},{"../../../zumen/simple":18}],12:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 var publicAPI = function (apiVersion) {
@@ -2254,9 +2261,4 @@ window.Apricot.Document = _.extend((window.Apricot.Document || {}), {
 window.Apricot.App = _.extend((window.Apricot.App || {}), {
 });
 
-},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}],18:[function(require,module,exports){
-'use strict';
-var json = {"colors": {"v0": "rgba(255, 201, 14, 255)", "v1": "rgba(255, 127, 39, 255)", "v2": "rgba(185, 122, 87, 255)", "v3": "rgba(136, 4, 21, 255)", "v4": "rgba(255, 255, 255, 255)", "v5": "rgba(195, 195, 195, 255)", "v6": "rgba(245, 3, 171, 255)", "v7": "rgba(3, 162, 232, 255)"}, "parts": [{"var": "0", "width": 478, "top": 0, "height": 68, "left": 0}, {"var": "1", "width": 48, "top": 9, "height": 48, "left": 10}, {"var": "2", "width": 36, "top": 19, "height": 36, "left": 383}, {"var": "3", "width": 36, "top": 19, "height": 36, "left": 429}, {"var": "4", "width": 478, "top": 68, "height": 215, "left": 0}, {"var": "5", "width": 478, "top": 283, "height": 56, "left": 0}, {"var": "6", "width": 36, "top": 293, "height": 36, "left": 421}, {"var": "7", "width": 24, "top": 299, "height": 24, "left": 427}]};
-module.exports = json;
-
-},{}]},{},[17]);
+},{"./Apricot/Base":2,"./Apricot/Document/Brick":4,"./Apricot/Document/View":5,"./Apricot/Document/Zumen":10,"underscore":1}]},{},[17]);

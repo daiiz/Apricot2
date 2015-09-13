@@ -25,7 +25,11 @@ Zumen.prototype = {
             'data': {}
         };
         self.initRecipe();
-        self.loadZumenFile();
+
+        if (zumenFile !== undefined) {
+            // self.zumenParts, self.zumenColors を完成させる
+            self.loadZumenFile(zumenFile);
+        }
 
         self.api = require('./Zumen.publicAPI');
     },

@@ -1,12 +1,13 @@
 'use strict';
 
-var loadZumenFile = function () {
+var loadZumenFile = function (zumenFile) {
     var self = this;
 
     // 図面ファイル名を取得
     var zFileName = self.zumenFileName;
     // 図面データのJSONを読み込む
-    var zumenJSON   = require('../../../zumen/simple');
+    var zumenJSON   = require('../../../zumen/' + zumenFile);
+
     self.zumenColors = zumenJSON.colors;
     self.zumenParts = zumenJSON.parts;
     self.parentPart = undefined;
@@ -38,6 +39,8 @@ var loadZumenFile = function () {
         });
         //console.log(partA);
     }
+
+    return true;
 };
 
 // 小さい方のパーツを返す
