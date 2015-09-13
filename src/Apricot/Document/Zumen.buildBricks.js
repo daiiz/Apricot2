@@ -1,5 +1,6 @@
 'use strict';
 
+// 図面パーツ情報から、Zumenに追加するBricksを返す
 var buildBricks = function () {
     var self = this;
     var Brick = require('./Brick');
@@ -19,7 +20,8 @@ var buildBricks = function () {
             top   : part.top,
             left  : part.left,
             width : part.width,
-            height: part.height
+            height: part.height,
+            BrickColor: colors['v' + i]
         });
         brick.addRecipe('data', {
             zumenFileName: zumenFile
@@ -30,20 +32,31 @@ var buildBricks = function () {
 
     // brickの親子関係を構築する
     for (var i = 0; i < bricks.length; i++) {
-        var brick = bricks[i][0];    // 着目するパーツ
+        brick = bricks[i][0];    // 着目するパーツ
         var brickId = brick.id;
 
         bricks.forEach(function (insertBrick) {
-            var insertBrickParentId;
-            if (insertBrick[1] !== undefined) {
+            var willInsertBrick = insertBrick[0];   // これから親の下に追加しようとしているブリック
+            var insertBrickParentId = insertBrick[1];
+            if (insertBrickParentId !== undefined) {
                 insertBrickParentId = zumenFile + '-' + insertBrick[1];
             }
             // id と parentPartIdx が一致したら挿入すべき
-            console.log('>>>> ', brickId, insertBrickParentId);
+            if (insertBrickParentId !== undefined && brickId === insertBrickParentId) {
+                brick.addBrick([willInsertBrick]);
+            }
         });
     }
 
-    return true;
+    // 図面直下に入るブリックを決定する
+    var rootBricks = [];
+    bricks.forEach(function (brick) {
+        if (brick[1] === undefined) {
+            rootBricks.push(brick[0]);
+        }
+    });
+
+    return rootBricks;
 };
 
 module.exports = buildBricks;
