@@ -32,7 +32,7 @@ Zumen.prototype = {
             // self.zumenParts, self.zumenColors を完成させる
             self.loadZumenFile(self.zumenFileName);
             // self.bricks を完成させる
-            self.buildBricks(self.zumenFileName);
+            self.bricks = self.buildBricks(self.zumenFileName);
         }
 
         self.api = require('./Zumen.publicAPI');

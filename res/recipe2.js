@@ -5,3 +5,4 @@ var Zumen = require('../src/Apricot/Document/Zumen');
 var Brick = require('../src/Apricot/Document/Brick');
 
 var zumen = new Zumen({id: 'zumen'}, 'simple');
+console.log(zumen.bricks);
