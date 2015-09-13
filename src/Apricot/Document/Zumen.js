@@ -29,6 +29,7 @@ Zumen.prototype = {
         if (zumenFile !== undefined) {
             // self.zumenParts, self.zumenColors を完成させる
             self.loadZumenFile(zumenFile);
+            console.log(self.zumenParts);
         }
 
         self.api = require('./Zumen.publicAPI');

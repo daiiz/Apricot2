@@ -21,7 +21,6 @@ var loadZumenFile = function (zumenFile) {
 
     // パーツが属する親パーツを決定する
     // parentPartIdx: パーツインデックス or undefined
-    // TODO: ループ回数見積もり
     for (i = 0; i < self.zumenParts.length; i++) {
         var partA = self.zumenParts[i]; // 着目するパーツ
 
