@@ -1,5 +1,7 @@
 'use strict';
 
+// 将来的なAPI配信に備えて構想段階
+
 var _ = require('underscore');
 
 // Apricot.*

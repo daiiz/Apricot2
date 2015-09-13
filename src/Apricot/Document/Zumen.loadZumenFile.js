@@ -26,7 +26,6 @@ var loadZumenFile = function (zumenFile) {
 
         self.zumenParts.forEach(function (partB) {
             var included = isIncludedIn(partA, partB);
-            //console.log('>>>> partA = %d, partB = %d, %s', partA.var, partB.var, included);
             if (included) {
                 // 小さい方を登録する
                 if (partA.parentPartIdx !== undefined) {
@@ -36,7 +35,6 @@ var loadZumenFile = function (zumenFile) {
                 }
             }
         });
-        //console.log(partA);
     }
 
     return true;
