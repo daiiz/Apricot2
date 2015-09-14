@@ -28,6 +28,8 @@ Brick.prototype = {
         self.initRecipe();
     },
 
+    // ブリックのroleのセッター
+    is: require('./is'),
     // ブリックにブリックを追加する
     addBrick: require('./addBrick'),
     // 図面のレシピに情報を追加する

@@ -43,6 +43,8 @@ Zumen.prototype = {
     // 図面ファイルから読み取った情報を基に、bricks を完成させる
     buildBricks: require('./Zumen.buildBricks'),
 
+    // 図面のroleのセッター
+    is: require('./is'),
     // 図面にブリックを追加する
     addBrick: require('./addBrick'),
     // 図面のレシピに情報を追加する
