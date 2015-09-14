@@ -1,4 +1,7 @@
-// 図面配列が更新されたときに実行されて、self.domを更新する
+// self.zumenDom を完成させる
+// すべてのブリックを保持
+var allBricks = [];
+
 var makeDom = function () {
     var self = this;
 
@@ -33,6 +36,7 @@ var makeDom = function () {
             var data   = recipe.data || {};
             var rootBrickDom = createHtml(doc, role, prop, data);
             rootBrickDom = applyStyle(rootBrickDom, design);
+            allBricks.push(rootBrickDom);
 
             // ブリック木を探索してbrick.bricksDomにDOMを格納する
             // bricksDomは、ブリック木に含まれるブリックを平らに集めた配列
@@ -56,9 +60,54 @@ var makeDom = function () {
     self.dom = {};
 };
 
+// ブリックのposition補正
+var originalPos = {};
+var excuteNotFixedPosition = function (brickInfo) {
+    var brick = brickInfo[0];           // position補正の対象ブリック
+    var parentBrickId = brickInfo[1];   // 対象ブリックの直近の親
+
+    // 親を探す
+    allBricks.forEach(function (parentBrick) {
+        if (parentBrick.id === parentBrickId) {
+            if (brick.style.position === 'absolute') {
+                // 親ブリックの位置情報(ReadOnly)
+                var parentTop, parentLeft;
+                if (originalPos['b-' + parentBrickId] !== undefined) {
+                    // 控えがある場合はこちらを優先する
+                    parentTop  = originalPos['b-' + parentBrickId].top;
+                    parentLeft = originalPos['b-' + parentBrickId].left;
+                }else {
+                    parentTop  = +parentBrick.style.top.replace('px', '');
+                    parentLeft = +parentBrick.style.left.replace('px', '');
+                }
+                // 対象ブリックの位置情報
+                var brickTop  = +brick.style.top.replace('px', '');
+                var brickLeft = +brick.style.left.replace('px', '');
+                // 位置情報更新
+                if (originalPos['b-' + brick.id] === undefined) {
+                    // 変更前の値を控えておく
+                    originalPos['b-' + brick.id] = {
+                        top : +brick.style.top.replace('px', ''),
+                        left: +brick.style.left.replace('px', '')
+                    }
+                }
+                brick.style.position = 'absolute';
+                brick.style.top = (brickTop - parentTop) + 'px';
+                brick.style.left = (brickLeft - parentLeft) + 'px';
+            }
+        }
+    });
+};
+
 // 親idを調べて入れ子にしてゆき、ひとつの要素を仕上げる
 var createBrickDom = function (bricksDom, rootBrickDom) {
     var rootBrickId = rootBrickDom.id;
+
+    // bricksDomを読むと、親ブリックを持つブリックをリストアップできる
+    // positionがfixedであるものを、relativeにする。top, leftを再計算する必要がある
+    bricksDom.forEach(function (brickInfo) {
+        excuteNotFixedPosition(brickInfo);
+    });
 
     // bricksDom を先頭から１つずつ見てゆき、入れ子形を完成させる
     for (var i = 0; i < bricksDom.length; i++) {
@@ -68,7 +117,7 @@ var createBrickDom = function (bricksDom, rootBrickDom) {
         var insertId = brick.id;
 
         for (var j = 0; j < bricksDom.length; j++) {
-            var brickInfo_j = bricksDom[j];
+            var brickInfo_j = bricksDom[j]; // これの0番目が挿入要素
             var brickId = brickInfo_j[1]; // 親brickId
             // 親id と 挿入要素id が一致したら挿入
             if (insertId === brickId) {
@@ -113,6 +162,7 @@ var walkBrick = function (brick, root, doc) {
             brickElem = applyStyle(brickElem, design);
             root.bricksDom.push([brickElem, child.parentBrick]);
             root.traceBricksId.push(child.id);
+            allBricks.push(brickElem);
         });
         walkBrick(firstChild, root, doc);
     }

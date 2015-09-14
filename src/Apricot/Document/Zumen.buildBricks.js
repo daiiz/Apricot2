@@ -22,7 +22,7 @@ var buildBricks = function () {
             Width     : +part.width,
             Height    : +part.height,
             BrickColor: colors['v' + i],
-            position  : 'fixed'
+            position  : 'absolute'
         });
         brick.addRecipe('data', {
             zumenFileName: zumenFile
