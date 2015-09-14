@@ -12,7 +12,6 @@
 if [ $# == 1 ]; then
     python scanner/make_az.py zumen/$1.png > scanner/tmp/$1.az
     python scanner/make_u.py scanner/tmp/$1.az > scanner/tmp/$1.u
-    python scanner/make_div.py scanner/tmp/$1.u > scanner/tmp/$1.div
 
     # Apricot 2.0
     #   Apricot Zumen Model をつくる
