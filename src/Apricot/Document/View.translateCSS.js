@@ -2,7 +2,7 @@ var translateCSS = function (attr, val) {
     // 横幅の大きさを返す
     if (attr === 'Width') {
         if (val === 'full') {
-            return ['width', window.innerWidth];
+            return ['width', '100%'];
         }
         return ['width', val + 'px'];
     }
@@ -10,7 +10,7 @@ var translateCSS = function (attr, val) {
     // 高さを返す
     else if (attr === 'Height') {
         if (val === 'full') {
-            return ['height', window.innerHeight];
+            return ['height', '100%'];
         }
         return ['height', val + 'px'];
     }
