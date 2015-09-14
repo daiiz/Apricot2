@@ -29,7 +29,11 @@ input.addRecipe('prop', {
 
 zumen.b(0).b(0).addBrick([input]);
 
+// className追加の関数を用意する
+
 var view = new View({id: 'main'});
 view.addZumen([zumen]);
 
-view.generateHTML('foo.html');  // id変更、className追加のオプションを第二引数に渡したい
+view.generateHTML('foo.html', {
+    'simple-1': 'black-div'
+});
