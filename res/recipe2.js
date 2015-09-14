@@ -19,7 +19,8 @@ var input = new Brick().is('input');
 input.addRecipe('design', {
     Width: 100,
     Top  : 10,
-    Left : 10
+    Left : 10,
+    cursor: 'pointer'
 });
 input.addRecipe('prop', {
     placeholder: 'Foo!'

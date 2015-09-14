@@ -4,7 +4,7 @@ var translateCSS = function (attr, val) {
         if (val === 'full') {
             return ['width', window.innerWidth];
         }
-        return ['width', val];
+        return ['width', val + 'px'];
     }
 
     // 高さを返す
@@ -12,17 +12,17 @@ var translateCSS = function (attr, val) {
         if (val === 'full') {
             return ['height', window.innerHeight];
         }
-        return ['height', val];
+        return ['height', val + 'px'];
     }
 
     // top を返す
     else if (attr === 'Top') {
-        return ['top', val];
+        return ['top', val + 'px'];
     }
 
     // left を返す
     else if (attr === 'Left') {
-        return ['left', val];
+        return ['left', val + 'px'];
     }
 
     // 背景色をランダムに返す

@@ -207,10 +207,6 @@ var applyStyle = function (elem, design) {
             var css = createCSS(attr, design[attr]);
             var attr = css[0];
             var val = css[1];
-            if (isNaN(val) === false) {
-                // 数値の場合
-                val = val + 'px';
-            }
             elem.style[attr] = val;
         }
     });
