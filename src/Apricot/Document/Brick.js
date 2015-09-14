@@ -40,6 +40,10 @@ Brick.prototype = {
     getParentZumen: function () {
     },
 
+    // bricksからブリックを得るための略記法
+    b    : require('./b'),
+    brick: require('./b'), 
+
     // レシピを初期化する
     initRecipe: require('./Brick.initRecipe')
 };

@@ -10,25 +10,26 @@ zumen.addRecipe('design', {
     Visible: true
 });
 
-zumen.bricks[0].bricks[0].addRecipe('design', {
+zumen.b(0).b(0).addRecipe('design', {
     BrickColor: '#000',
     Width     : 130
 });
 
 var input = new Brick().is('input');
 input.addRecipe('design', {
-    Width: 100,
-    Top  : 10,
-    Left : 10,
+    Width: 'full',
+    Height: 30,
+    Top  : 9,
+    //Left : 10,
     cursor: 'pointer'
 });
 input.addRecipe('prop', {
     placeholder: 'Foo!'
 });
 
-zumen.bricks[0].bricks[0].addBrick([input]);
+zumen.b(0).b(0).addBrick([input]);
 
 var view = new View({id: 'main'});
 view.addZumen([zumen]);
 
-view.generateHTML('foo.html');
+view.generateHTML('foo.html');  // id変更、className追加のオプションを第二引数に渡したい

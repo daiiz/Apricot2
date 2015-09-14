@@ -52,6 +52,10 @@ Zumen.prototype = {
     // 図面のレシピを上書きする
     setRecipe: require('./setRecipe'),
 
+    // bricksからブリックを得るための略記法
+    b    : require('./b'),
+    brick: require('./b'),
+
     // レシピを初期化する
     initRecipe: require('./Zumen.initRecipe'),
 
