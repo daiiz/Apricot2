@@ -117,8 +117,12 @@ describe('Apricot.Document.View', function () {
             assert.equal(view1.generateHTML('test.html'), 'test.html');
         });
 
-        it('ViewでfileWriterを呼び出すことができる', function () {
-            assert.equal(view1.fileWriter(), true);
+        it('ViewでfileWriterを呼び出し、正しい場所にファイルを出力できる', function () {
+            assert.equal(view1.fileWriter(), '/Users/daiki/GitHubRepos/Apricot2/apricot.fileWriter.txt');
+            assert.equal(view1.fileWriter('', 'test',   'fo'), '/Users/daiki/GitHubRepos/Apricot2/test/apricot.fileWriter.txt');
+            assert.equal(view1.fileWriter('', '/test',  'foo'), '/Users/daiki/GitHubRepos/Apricot2/test/apricot.fileWriter.txt');
+            assert.equal(view1.fileWriter('', 'test/',  'fooo'), '/Users/daiki/GitHubRepos/Apricot2/test/apricot.fileWriter.txt');
+            assert.equal(view1.fileWriter('', '/test/', 'foooo'), '/Users/daiki/GitHubRepos/Apricot2/test/apricot.fileWriter.txt');
         });
     });
 });
