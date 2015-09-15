@@ -62,11 +62,34 @@ var createManifestFile = function (appName, option) {
         jsonString += txt + '\n';
     });
 
-    console.log(jsonString);
+    //console.log(jsonString);
 };
 
 var createBackgroundFile = function (option) {
     var self = this;
+
+    // bindする情報
+    // TODO: ベースとなる図面サイズを適用する方法を用意する
+    var width  = option.width  || 480;
+    var height = option.height || 640;
+
+    var contents = [
+        'chrome.app.runtime.onLaunched.addListener(function() {',
+        '   chrome.app.window.create("{}", {',
+        '       width : {}, maxWidth : {},'.format(width, width),
+        '       height: {}, maxHeight: {},'.format(height, height),
+        '       singleton: false',
+        '   },function(appWindow) {',
+        '   });',
+        '});',
+    ];
+
+    var jsString = '';
+    contents.forEach(function (txt) {
+        jsString += txt + '\n';
+    });
+
+    console.log(jsString);
 };
 
 module.exports = generateChromeAppManifest;
