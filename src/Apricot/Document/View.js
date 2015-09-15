@@ -54,7 +54,10 @@ View.prototype = {
     makeDom: require('./View.makeDom'),
 
     // HTMLを出力する
-    generateHTML: require('./View.generateHTML')
+    generateHTML: require('./View.generateHTML'),
+
+    // ChromeAppのマニフェストを出力する
+    generateChromeAppManifest: require('./View.generateChromeAppManifest.js')
 };
 
 module.exports = View;

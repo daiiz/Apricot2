@@ -15,4 +15,12 @@ base.addRecipe('design', {
 var view = new View({id: 'main'});
 view.addZumen([base, panel, card]);
 
-view.generateHTML('bar.html');
+//view.generateHTML('bar.html');
+view.generateChromeAppManifest('Recipe3',
+    {
+        width: 480,
+        height: 640,
+        icon: 'apricot_icon.png',
+        description: 'Painting!'
+    }
+);
