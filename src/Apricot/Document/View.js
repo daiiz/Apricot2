@@ -50,6 +50,9 @@ View.prototype = {
         });
     },
 
+    // ファイルに出力する関数
+    fileWriter: require('./fileWriter'),
+
     // レシピを基にDOMを構成する
     makeDom: require('./View.makeDom'),
 

@@ -114,7 +114,11 @@ describe('Apricot.Document.View', function () {
         });
 
         it('generateHTMLを呼び出すことができる', function () {
-            assert.equal(view1.generateHTML('test.html'), 'test.html'); 
+            assert.equal(view1.generateHTML('test.html'), 'test.html');
+        });
+
+        it('ViewでfileWriterを呼び出すことができる', function () {
+            assert.equal(view1.fileWriter(), true);
         });
     });
 });
