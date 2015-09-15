@@ -1,17 +1,17 @@
 {
-  "name": "Apricot2 Demo",
-  "description": "Programming is Painting.",
-  "version": "2.0.1",
-  "manifest_version": 2,
-  "app": {
-    "background": {
-      "scripts": ["background.js"]
-    }
-  },
-  "icons": {
-    "48":  "apricot_icon.png",
-    "16":  "apricot_icon.png",
-    "128": "apricot_icon.png"
-  },
-  "permissions": ["storage", "unlimitedStorage", "<all_urls>", "webview"]
+   "name": "Recipe3",
+   "description": "Painting!",
+   "version": "0.0.1",
+   "manifest_version": 2,
+   "app": {
+       "background": {
+           "scripts": ["background.js"]
+       }
+   },
+   "icons": {
+       "16" :  "apricot_icon.png",
+       "48" :  "apricot_icon.png",
+       "128":  "apricot_icon.png"
+   },
+   "permissions": ["storage", "unlimitedStorage", "<all_urls>", "webview"]
 }

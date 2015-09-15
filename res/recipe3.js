@@ -15,7 +15,8 @@ base.addRecipe('design', {
 var view = new View({id: 'main'});
 view.addZumen([base, panel, card]);
 
-//view.generateHTML('bar.html');
+view.generateHTML('bar.html');
+
 view.generateChromeAppManifest('Recipe3',
     {
         width: 480,

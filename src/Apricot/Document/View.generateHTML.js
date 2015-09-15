@@ -4,6 +4,7 @@ var jsdom = require('jsdom');
 
 var generateHTML = function (htmlFileName, idMap) {
     var self = this;
+    self.htmlFileName = htmlFileName;
 
     // self.zumens のデータを用いて self.zumenDom が生成される
     self.makeDom();
@@ -24,7 +25,7 @@ var generateHTML = function (htmlFileName, idMap) {
         });
     }
 
-    console.log(outputDocument.childNodes[0].outerHTML);    // <html>
+    //console.log(outputDocument.childNodes[0].outerHTML);    // <html>
     return htmlFileName;
 };
 

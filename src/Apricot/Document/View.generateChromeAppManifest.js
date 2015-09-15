@@ -20,6 +20,15 @@ String.prototype.format = function() {
 var generateChromeAppManifest = function (appName, option) {
     var self = this;
 
+    // www/manifest.json をつくる
+    createManifestFile(appName, option);
+    // www/background.js をつくる
+    createBackgroundFile(option);
+};
+
+var createManifestFile = function (appName, option) {
+    var self = this;
+
     // bindする情報
     var name = appName || 'Apricot 2.0';
     var description = option.description || 'Apricot 2.0 Demo App.';
@@ -48,12 +57,16 @@ var generateChromeAppManifest = function (appName, option) {
         '}'
     ];
 
-    var jsonString;
+    var jsonString = '';
     contents.forEach(function (txt) {
-        
-    })
+        jsonString += txt + '\n';
+    });
 
-    console.log(contents);
+    console.log(jsonString);
+};
+
+var createBackgroundFile = function (option) {
+    var self = this;
 };
 
 module.exports = generateChromeAppManifest;
