@@ -23,6 +23,7 @@ var generateChromeAppManifest = function (appName, option) {
     // www/manifest.json をつくる
     createManifestFile(appName, option);
     // www/background.js をつくる
+    option.htmlName = self.htmlFileName;
     createBackgroundFile(option);
 };
 
@@ -66,16 +67,20 @@ var createManifestFile = function (appName, option) {
 };
 
 var createBackgroundFile = function (option) {
-    var self = this;
-
     // bindする情報
     // TODO: ベースとなる図面サイズを適用する方法を用意する
-    var width  = option.width  || 480;
-    var height = option.height || 640;
+    var width    = option.width  || 480;
+    var height   = option.height || 640;
+    var htmlName = option.htmlName;
+
+    if (htmlName === undefined) {
+        console.error('Err:');
+        return;
+    }
 
     var contents = [
         'chrome.app.runtime.onLaunched.addListener(function() {',
-        '   chrome.app.window.create("{}", {',
+        '   chrome.app.window.create("{}", {'.format(htmlName),
         '       width : {}, maxWidth : {},'.format(width, width),
         '       height: {}, maxHeight: {},'.format(height, height),
         '       singleton: false',
