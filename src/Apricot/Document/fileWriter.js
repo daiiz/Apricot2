@@ -34,9 +34,7 @@ var fileWriter = function (fileName, dir, body) {
     }
     var saveFilePath = saveTo + fileName;
 
-    fs.writeFile(saveTo + fileName, body, 'utf8', function (err) {
-    });
-
+    fs.writeFileSync(saveTo + fileName, body, 'utf8');
     // 保存したファイルの絶対パスを返す
     return saveFilePath;
 };
