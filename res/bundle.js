@@ -10,7 +10,7 @@ var card  = new Zumen({id: 'card'}, 'card');
 var view = new View({id: 'main'});
 view.addZumen([base, panel, card]);
 
-view.addScript(['user.js']);
+view.addScript(['jquery.min.js', 'user.js']);
 view.generateHTML('index.html');
 
 view.generateChromeAppManifest('Recipe3 App',
