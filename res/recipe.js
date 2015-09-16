@@ -1,8 +1,4 @@
-var zumen = new Zumen({id: 'zumen'}, 'simple');
-zumen.addRecipe('design', {
-    Visible: true
-});
-
+var zumen = new Zumen({id: 'zumen'}, 'simple', true);
 // className追加の関数を用意する
 
 var view = new View({id: 'main'});

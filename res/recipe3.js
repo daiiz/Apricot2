@@ -1,10 +1,6 @@
-var base  = new Zumen({id: 'base'}, 'base');
+var base  = new Zumen({id: 'base'}, 'base', true);
 var panel = new Zumen({id: 'panel'}, 'panel');
 var card  = new Zumen({id: 'card'}, 'card');
-
-base.addRecipe('design', {
-    Visible: true
-});
 
 var view = new View({id: 'main'});
 view.addZumen([base, panel, card]);
