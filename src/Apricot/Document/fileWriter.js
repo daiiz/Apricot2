@@ -35,7 +35,6 @@ var fileWriter = function (fileName, dir, body) {
     var saveFilePath = saveTo + fileName;
 
     fs.writeFile(saveTo + fileName, body, 'utf8', function (err) {
-        console.log(err);
     });
 
     // 保存したファイルの絶対パスを返す

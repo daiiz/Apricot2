@@ -21,10 +21,18 @@ var generateChromeAppManifest = function (appName, option) {
     var self = this;
 
     // www/manifest.json をつくる
-    createManifestFile(appName, option);
+    var manifest = createManifestFile(appName, option);
     // www/background.js をつくる
     option.htmlName = self.htmlFileName;
-    createBackgroundFile(option);
+    var background = createBackgroundFile(option);
+
+    // 生成された結果を受け取って、ここでファイルを生成する
+    var savedFile;
+    savedFile = self.fileWriter('manifest.json', 'www', manifest);
+    console.log('> ', savedFile);
+    savedFile = self.fileWriter('background.js', 'www', background);
+    console.log('> ', savedFile);
+
 };
 
 var createManifestFile = function (appName, option) {
@@ -63,7 +71,9 @@ var createManifestFile = function (appName, option) {
         jsonString += txt + '\n';
     });
 
-    //console.log(jsonString);
+    return jsonString;
+    //var manifest = self.fileWriter('manifest.json', 'www', jsonString);
+    //console.log('> ', manifest);
 };
 
 var createBackgroundFile = function (option) {
@@ -94,7 +104,9 @@ var createBackgroundFile = function (option) {
         jsString += txt + '\n';
     });
 
-    console.log(jsString);
+    return jsString;
+    //var background = self.fileWriter('background.js', 'www', jsString);
+    //console.log('> ', background);
 };
 
 module.exports = generateChromeAppManifest;

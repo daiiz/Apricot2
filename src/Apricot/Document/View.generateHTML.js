@@ -26,6 +26,10 @@ var generateHTML = function (htmlFileName, idMap) {
     }
 
     //console.log(outputDocument.childNodes[0].outerHTML);    // <html>
+    // HTMLファイルを出力する
+    var html = self.fileWriter(htmlFileName, 'www', outputDocument.childNodes[0].outerHTML);
+    console.log('> ', html);
+    
     return htmlFileName;
 };
 
