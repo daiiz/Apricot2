@@ -5,7 +5,6 @@ var Zumen = require('../src/Apricot/Document/Zumen');
 var Brick = require('../src/Apricot/Document/Brick');
 
 var zumen = new Zumen({id: 'zumen'}, 'simple');
-//var zumen2 = new Zumen({id: 'zumen2'}, 'simple2');
 zumen.addRecipe('design', {
     Visible: true
 });
@@ -20,7 +19,6 @@ input.addRecipe('design', {
     Width: 'full',
     Height: 30,
     Top  : 9,
-    //Left : 10,
     cursor: 'pointer'
 });
 input.addRecipe('prop', {
@@ -29,7 +27,6 @@ input.addRecipe('prop', {
 
 zumen.b(0).b(0).addBrick([input]);
 
-// className追加の関数を用意する
 
 var view = new View({id: 'main'});
 view.addZumen([zumen]);
