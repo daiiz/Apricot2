@@ -112,6 +112,11 @@ describe('Apricot.Document.View', function () {
             assert.equal(view1.zumenDom[0].id === view1.zumens[0].id, true);
         });
 
+        it('ユーザーJSを追加できる', function () {
+            assert.equal(view1.addScript(), 0);
+            assert.equal(view1.addScript(['user.js']), 1);
+        });
+
         it('generateHTMLを呼び出すことができる', function () {
             assert.equal(view1.generateHTML('test.html'), 'test.html');
         });

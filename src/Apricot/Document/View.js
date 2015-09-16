@@ -27,6 +27,8 @@ View.prototype = {
         // ビューに含まれる図面モデル
         self.zumens = [];
         self.zumenDom = [];
+        // 追加されたユーザーJSのパス
+        self.userScripts = [],
         self.bindEvents();
     },
 
@@ -55,6 +57,9 @@ View.prototype = {
 
     // レシピを基にDOMを構成する
     makeDom: require('./View.makeDom'),
+
+    // ユーザーJSを追加する
+    addScript: require('./View.addScript'),
 
     // HTMLを出力する
     generateHTML: require('./View.generateHTML'),
