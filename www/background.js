@@ -1,8 +1,8 @@
-// background.js for chrome apps
 chrome.app.runtime.onLaunched.addListener(function() {
-  chrome.app.window.create('foo.html', {
-     width: 478, maxWidth: 478, height: 339, maxHeight: 339,
-     singleton: false
-  },function(appWindow) {
-  });
+   chrome.app.window.create("bar.html", {
+       width : 480, maxWidth : 480,
+       height: 640, maxHeight: 640,
+       singleton: false
+   },function(appWindow) {
+   });
 });

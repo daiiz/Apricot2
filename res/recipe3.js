@@ -17,7 +17,7 @@ view.addZumen([base, panel, card]);
 
 view.generateHTML('bar.html');
 
-view.generateChromeAppManifest('Recipe3',
+view.generateChromeAppManifest('Recipe3 App',
     {
         width: 480,
         height: 640,
