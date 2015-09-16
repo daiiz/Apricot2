@@ -16,4 +16,5 @@ if [ $# == 1 ]; then
     # Apricot 2.0
     #   Apricot Zumen Model をつくる
     python scanner/make_azm.py scanner/tmp/$1.az > zumen/$1.js
+    /bin/echo -n 'Scanned Zumen: "'$1'".'
 fi

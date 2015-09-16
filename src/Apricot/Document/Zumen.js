@@ -29,6 +29,8 @@ Zumen.prototype = {
         self.initRecipe();
 
         if (zumenFile !== undefined) {
+            // 図面スキャンを実行する
+            self.scanZumen(self.zumenFileName);
             // self.zumenParts, self.zumenColors を完成させる
             self.loadZumenFile(self.zumenFileName);
             // self.bricks を完成させる
@@ -38,6 +40,8 @@ Zumen.prototype = {
         self.api = require('./Zumen.publicAPI');
     },
 
+    // 図面スキャナー
+    scanZumen: require('./Zumen.scanZumen'),
     // 図面ファイルを読み込み、zumenParts, zumenColors を完成させる
     loadZumenFile: require('./Zumen.loadZumenFile'),
     // 図面ファイルから読み取った情報を基に、bricks を完成させる
