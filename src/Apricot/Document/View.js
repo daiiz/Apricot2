@@ -29,6 +29,15 @@ View.prototype = {
         self.zumenDom = [];
         // 追加されたユーザーJSのパス
         self.userScripts = [],
+        // <head> 内に挿入される内容
+        self.userHead = [
+            '<meta charset="utf-8">',
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">',
+            '<meta name="mobile-web-app-capable" content="yes">',
+            '<meta name="apple-mobile-web-app-capable" content="yes">',
+            '<!-- meta name="theme-color" content="#eee" id="headcolor" -->'
+        ],
+
         self.bindEvents();
     },
 
@@ -60,6 +69,9 @@ View.prototype = {
 
     // ユーザーJSを追加する
     addScript: require('./View.addScript'),
+
+    // <head>内に要素を追加する
+    addToHead: require('./View.addHead'),
 
     // HTMLを出力する
     generateHTML: require('./View.generateHTML'),

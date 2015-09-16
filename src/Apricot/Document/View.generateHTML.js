@@ -11,7 +11,14 @@ var generateHTML = function (htmlFileName, idMap) {
 
     // ユーザー指定のDOM調整を行う準備
     var html = '<html>{}</html>';
+    var head = '<head>{}</head>';
     var body = '<body>{}</body>';
+
+    var heads = '';
+    self.userHead.forEach(function (elem) {
+        heads += elem;
+    });
+    body = heads + body;
 
     var doms = '';
     self.zumenDom.forEach(function (dom) {
