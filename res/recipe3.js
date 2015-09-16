@@ -2,6 +2,11 @@ var base  = new Zumen({id: 'base'}, 'base', true);
 var panel = new Zumen({id: 'panel'}, 'panel');
 var card  = new Zumen({id: 'card'}, 'card');
 
+base.b(0).b(0).addRecipe('design', {
+    'z-index': 1000,
+    'cursor' : 'pointer'
+});
+
 var view = new View({id: 'main'});
 view.addZumen([base, panel, card]);
 
