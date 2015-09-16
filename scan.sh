@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# build.sh (@/)
+# scan.sh (@/)
 #   /zumen/$1.png
 #   --> /scanner/tmp/$1.az      カラー区画マップ
 #   --> /scanner/tmp/$1.u
