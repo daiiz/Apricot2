@@ -1,11 +1,11 @@
 'use strict';
 
-var Zumen = function (option, zumenFile) {
-    this.init(option || {}, zumenFile);
+var Zumen = function (option, zumenFile, isVisible) {
+    this.init(option || {}, zumenFile, isVisible);
 };
 
 Zumen.prototype = {
-    init: function (option, zumenFile) {
+    init: function (option, zumenFile, isVisible) {
         var self = this;
 
         self.name = 'Zumen';
@@ -26,7 +26,8 @@ Zumen.prototype = {
             'prop': {},
             'data': {}
         };
-        self.initRecipe();
+        var visible = isVisible || false;
+        self.initRecipe(visible);
 
         if (zumenFile !== undefined) {
             // 図面スキャンを実行する

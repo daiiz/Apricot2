@@ -29,8 +29,8 @@ describe('Apricot.Document.Zumen', function () {
         });
 
         it('Zumenのデフォルト位置は(0, 0)である', function () {
-            assert.equal(zumen1.recipe.design.top, 0);
-            assert.equal(zumen1.recipe.design.left, 0);
+            assert.equal(zumen1.recipe.design.Top, 0);
+            assert.equal(zumen1.recipe.design.Left, 0);
         });
 
         it('bricksが初期化されている', function () {
