@@ -27,7 +27,7 @@ var generateHTML = function (htmlFileName, idMap) {
 
     // HTMLファイルを出力する
     var html = self.fileWriter(htmlFileName, 'www', outputDocument.childNodes[0].outerHTML);
-    console.log('> ', html);
+    console.log('>', html);
 
     return htmlFileName;
 };

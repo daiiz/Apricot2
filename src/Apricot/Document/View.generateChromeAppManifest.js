@@ -29,9 +29,9 @@ var generateChromeAppManifest = function (appName, option) {
     // 生成された結果を受け取って、ここでファイルを生成する
     var savedFile;
     savedFile = self.fileWriter('manifest.json', 'www', manifest);
-    console.log('> ', savedFile);
+    console.log('>', savedFile);
     savedFile = self.fileWriter('background.js', 'www', background);
-    console.log('> ', savedFile);
+    console.log('>', savedFile);
 
 };
 
