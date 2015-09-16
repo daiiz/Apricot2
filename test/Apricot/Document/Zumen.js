@@ -1,7 +1,6 @@
 'use strict';
 
 var assert = require('assert');
-var $ = require('jquery');
 var Zumen = require('../../../src/Apricot/Document/Zumen');
 
 describe('Apricot.Document.Zumen', function () {

@@ -1,7 +1,6 @@
 'use strict';
 
 var assert = require('assert');
-var $ = require('jquery');
 var jsdom = require('jsdom');
 
 var testDocument = jsdom.jsdom('<html><body></body></html>');
