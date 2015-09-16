@@ -72,8 +72,6 @@ var createManifestFile = function (appName, option) {
     });
 
     return jsonString;
-    //var manifest = self.fileWriter('manifest.json', 'www', jsonString);
-    //console.log('> ', manifest);
 };
 
 var createBackgroundFile = function (option) {
@@ -105,8 +103,6 @@ var createBackgroundFile = function (option) {
     });
 
     return jsString;
-    //var background = self.fileWriter('background.js', 'www', jsString);
-    //console.log('> ', background);
 };
 
 module.exports = generateChromeAppManifest;
