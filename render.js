@@ -33,11 +33,11 @@ var recipeText = '';
 fs.readFile(recipePath, 'utf8', function (err, txt) {
     recipeText = header + '\n' + txt;
     // 結合されたレシピを出力する
-    var bundle = fw('bundleRecipe.js', 'res', recipeText);
+    var bundle = fw('bundle.js', 'res', recipeText);
     console.log('>', bundle);
 
     var rendeRecipe = function () {
-        require('./res/bundleRecipe');
+        require('./res/bundle');
     };
 
     rendeRecipe();
