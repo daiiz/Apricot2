@@ -2,7 +2,7 @@
 
 var jsdom = require('jsdom');
 
-var generateHTML = function (htmlFileName, idMap) {
+var generateHTML = function (htmlFileName, idMap, classNameMap) {
     var self = this;
     self.htmlFileName = htmlFileName;
 
@@ -35,6 +35,15 @@ var generateHTML = function (htmlFileName, idMap) {
     body = body.format(doms);
     html = html.format(body);
     var outputDocument = jsdom.jsdom(html);
+
+    // classNameの追加
+    if (classNameMap !== undefined) {
+        var ids = Object.keys(classNameMap);
+        ids.forEach(function (id) {
+            var className = classNameMap[id];
+            outputDocument.getElementById(id).className += ' ' + className;
+        });
+    }
 
     // idの置換
     if (idMap !== undefined) {

@@ -4,7 +4,9 @@ var view = new View({id: 'main'});
 view.addZumen([zumen]);
 
 view.generateHTML('index.html', {
-    'simple-1': 'black-div'
+    'simple-1': 'orange-div'
+}, {
+    'simple-1': 'a b c'
 });
 
 view.generateChromeAppManifest('Recipe3 Simple App',
