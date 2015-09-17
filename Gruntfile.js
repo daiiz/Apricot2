@@ -6,12 +6,6 @@ module.exports = function (grunt) {
             test: {
                 src: ['test/**/*.js']
             }
-        },
-        watch : {
-            scripts : {
-                files : ['src/**/*.js', 'test/**/*.js'],
-                tasks : ['mochaTest']
-            }
         }
     });
 
@@ -21,5 +15,5 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['mochaTest']);
 };
