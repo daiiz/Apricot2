@@ -5,3 +5,7 @@ test/apricot.fileWriter.txt
 apricot.fileWriter.txt
 www/test.html
 zumen/*.js
+
+zumen/test-*.png
+res/test-*.js
+www/test-*.html
