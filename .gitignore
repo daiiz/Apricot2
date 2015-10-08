@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
-scanner/tmp/
+scanner/tmp/*.az
+scanner/tmp/*.u
+scanner/tmp/*.div
 test/apricot.fileWriter.txt
 apricot.fileWriter.txt
 www/test.html
